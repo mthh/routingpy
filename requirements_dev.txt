@@ -44,6 +44,6 @@ sphinxcontrib-serializinghtml==2.0.0 ; python_version >= "3.9" and python_full_v
 sphinxnotes-strike==1.2.1 ; python_version >= "3.9" and python_full_version < "4.0.0"
 tomli==2.2.1 ; python_version >= "3.9" and python_full_version < "4.0.0"
 typing-extensions==4.14.0 ; python_version >= "3.9" and python_full_version < "4.0.0"
-urllib3==2.4.0 ; python_version >= "3.9" and python_full_version < "4.0.0"
+urllib3==2.5.0 ; python_version >= "3.9" and python_full_version < "4.0.0"
 virtualenv==20.31.2 ; python_version >= "3.9" and python_full_version < "4.0.0"
 zipp==3.23.0 ; python_version == "3.9"
