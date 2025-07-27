@@ -405,7 +405,7 @@ class OSRM:
 
         if annotations:
             params["annotations"] = convert.delimit_list(annotations)
-        
+
         params = utils.deep_merge_dicts(params, matrix_kwargs)
 
         return params

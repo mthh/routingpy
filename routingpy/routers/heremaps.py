@@ -770,7 +770,7 @@ class HereMaps:
 
         if speed_profile is not None:
             params["speedProfile"] = speed_profile
-        
+
         params = utils.deep_merge_dicts(params, directions_kwargs)
 
         return self.parse_direction_json(
@@ -1073,7 +1073,7 @@ class HereMaps:
 
         if speed_profile is not None:
             params["speedProfile"] = speed_profile
-        
+
         params = utils.deep_merge_dicts(params, isochrones_kwargs)
 
         return self.parse_isochrone_json(
