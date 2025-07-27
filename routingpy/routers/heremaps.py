@@ -18,8 +18,7 @@
 from operator import itemgetter
 from typing import List, Optional, Tuple, Union
 
-from .. import convert
-from .. import utils
+from .. import convert, utils
 from ..client_base import DEFAULT
 from ..client_default import Client
 from ..direction import Direction, Directions

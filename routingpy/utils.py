@@ -132,11 +132,7 @@ def deep_merge_dicts(d1: dict, d2: dict) -> dict:
     """
     result = d1.copy()  # Start with a shallow copy of dict1
     for key, value in d2.items():
-        if (
-            key in result
-            and isinstance(result[key], dict)
-            and isinstance(value, dict)
-        ):
+        if key in result and isinstance(result[key], dict) and isinstance(value, dict):
             # Both values are dicts: recurse
             result[key] = deep_merge_dicts(result[key], value)
         else:
