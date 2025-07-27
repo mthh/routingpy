@@ -252,7 +252,7 @@ class Valhalla:
             params["id"] = id
 
         # update with kw args
-        params.update(kwargs)
+        params = utils.deep_merge_dicts(params, kwargs)
 
         return params
 
@@ -460,7 +460,7 @@ class Valhalla:
         if id:
             params["id"] = id
 
-        params.update(kwargs)
+        params = utils.deep_merge_dicts(params, kwargs)
 
         return params
 
@@ -623,7 +623,7 @@ class Valhalla:
         if id:
             params["id"] = id
 
-        params.update(kwargs)
+        params = utils.deep_merge_dicts(params, kwargs)
 
         return params
 
@@ -743,7 +743,7 @@ class Valhalla:
         if expansion_properties:
             params["expansion_properties"] = expansion_properties
 
-        params.update(kwargs)
+        params = utils.deep_merge_dicts(params, kwargs)
 
         return params
 
@@ -846,7 +846,7 @@ class Valhalla:
             if options:
                 params["costing_options"][profile] = options
 
-        params.update(kwargs)
+        params = utils.deep_merge_dicts(params, kwargs)
 
         return params
 
