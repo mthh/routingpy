@@ -251,6 +251,11 @@ class Valhalla:
         if id:
             params["id"] = id
 
+        # We don't want the user to pass the unit as a kwarg, so we force it
+        # to be kilometers (the default unit of Valhalla) and convert the result to meters
+        # (the Direction class stores the distance in meters and handles the unit conversion)
+        kwargs["units"] = "kilometers"
+
         # update with kw args
         params = utils.deep_merge_dicts(params, kwargs)
 
@@ -622,6 +627,11 @@ class Valhalla:
 
         if id:
             params["id"] = id
+
+        # We don't want the user to pass the unit as a kwarg, so we force it
+        # to be kilometers (the default unit of Valhalla) and convert the result to meters
+        # (the Matrix class stores the distance in meters).
+        kwargs["units"] = "kilometers"
 
         params = utils.deep_merge_dicts(params, kwargs)
 

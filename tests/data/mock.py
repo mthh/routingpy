@@ -1164,6 +1164,7 @@ ENDPOINTS_QUERIES = {
             "instructions": False,
             "id": "wacko",
             "somerandom": "option",
+            "units": "kilometers",
         },
         "isochrones": {
             "locations": PARAM_POINT,
@@ -1192,7 +1193,7 @@ ENDPOINTS_QUERIES = {
             },
             "avoid_locations": PARAM_POINT,
             "profile": "auto",
-            "units": "km",
+            "units": "kilometers",
             "id": "wacko",
             "preference": "shortest",
         },
@@ -1300,6 +1301,7 @@ ENDPOINTS_EXPECTED = {
             "id": "wacko",
             "narrative": False,
             "somerandom": "option",
+            "units": "kilometers",
         },
         "isochrones": {
             "locations": [{"lat": PARAM_POINT[1], "lon": PARAM_POINT[0]}],
@@ -1342,7 +1344,7 @@ ENDPOINTS_EXPECTED = {
             },
             "avoid_locations": [{"lon": 8.34234, "lat": 48.23424}],
             "id": "wacko",
-            "units": "km",
+            "units": "kilometers",
         },
         "expansion": {
             "expansion_properties": ["distance", "duration", "cost"],
