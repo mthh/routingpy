@@ -12,8 +12,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - Added a `km` and a `mi` property to `Direction` class to get the distance in kilometers and miles ([#139](https://github.com/gis-ops/routingpy/issues/139)).
   Distance stored in `Direction.distance` are always in meters.
-
 - Added a `pred_edge_id` property to `Edge` class that is used in `Expansions`.
+- `geotiff` support for Valhalla's isochrones ([#150](https://github.com/mthh/routingpy/pull/150))
 
 ### Fixed
 

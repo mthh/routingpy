@@ -27,6 +27,7 @@ from routingpy.direction import Direction
 from routingpy.expansion import Expansions
 from routingpy.isochrone import Isochrone, Isochrones
 from routingpy.matrix import Matrix
+from routingpy.raster import Raster
 from routingpy.valhalla_attributes import (
     MatchedEdge,
     MatchedPoint,
@@ -150,6 +151,24 @@ class ValhallaTest(_test.TestCase):
         for i in iso:
             self.assertIsInstance(i, Isochrone)
             self.assertEqual(i.interval_type, "distance")
+
+    @responses.activate
+    def test_raster(self):
+        query = deepcopy(ENDPOINTS_QUERIES[self.name]["isochrones"])
+        query["format"] = "geotiff"
+        with open("tests/raster_valhalla.tif", "rb") as raster_file:
+            image = raster_file.read()
+            responses.add(
+                responses.POST,
+                "https://api.mapbox.com/valhalla/v1/isochrone",
+                status=200,
+                body=image,
+                content_type="image/tiff",
+            )
+            raster = self.client.raster(**query)
+            self.assertIsInstance(raster, Raster)
+            self.assertEqual(raster.image, image)
+            self.assertEqual(raster.max_travel_time, max(query["intervals"]))
 
     # TODO: test colors having less items than range
     @responses.activate

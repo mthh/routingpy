@@ -16,7 +16,7 @@
 #
 
 from operator import itemgetter
-from typing import List, Optional, Sequence, Union  # noqa: F401
+from typing import List, Optional, Sequence, Union
 
 from .. import utils
 from ..client_base import DEFAULT
@@ -25,6 +25,7 @@ from ..direction import Direction
 from ..expansion import Edge, Expansions
 from ..isochrone import Isochrone, Isochrones
 from ..matrix import Matrix
+from ..raster import Raster
 from ..valhalla_attributes import MatchedResults
 
 
@@ -482,6 +483,62 @@ class Valhalla:
                 )
 
         return Isochrones(isochrones, response)
+
+    def raster(  # noqa: C901
+        self,
+        locations: List[float],
+        profile: str,
+        intervals: List[int],
+        interval_type: Optional[str] = "time",
+        colors: Optional[List[str]] = None,
+        polygons: Optional[bool] = None,
+        denoise: Optional[float] = None,
+        generalize: Optional[float] = None,
+        preference: Optional[str] = None,
+        options: Optional[dict] = None,
+        avoid_locations: Optional[List[List[float]]] = None,
+        avoid_polygons: Optional[List[List[List[float]]]] = None,
+        date_time: Optional[dict] = None,
+        show_locations: Optional[List[List[float]]] = None,
+        id: Optional[str] = None,
+        dry_run: Optional[bool] = None,
+        **kwargs
+    ):
+        """
+        For parameters see docs for isochrones.
+
+        Returns isochrones/isodistances as GeoTIFF
+        """
+        params = self.get_isochrone_params(
+            locations,
+            profile,
+            intervals,
+            interval_type,
+            colors,
+            polygons,
+            denoise,
+            generalize,
+            preference,
+            options,
+            avoid_locations,
+            avoid_polygons,
+            date_time,
+            show_locations,
+            id,
+            **kwargs
+        )
+        params["format"] = "geotiff"
+
+        return self.parse_raster_response(
+            self.client._request("/isochrone", post_params=params, dry_run=dry_run), max(intervals)
+        )
+
+    @staticmethod
+    def parse_raster_response(response, max_travel_time: int) -> Raster:
+        if response is None:  # pragma: no cover
+            return Raster()
+
+        return Raster(image=response, max_travel_time=max_travel_time)
 
     def matrix(
         self,

@@ -124,7 +124,7 @@ class OpenTripPlannerV2Test(_test.TestCase):
             ("arriveBy", "false"),
             ("cutoff", convert.seconds_to_iso8601(query["cutoff"])),
         ]
-        with open("tests/raster_example.tiff", "rb") as raster_file:
+        with open("tests/raster_otp.tiff", "rb") as raster_file:
             image = raster_file.read()
             responses.add(
                 responses.GET,
