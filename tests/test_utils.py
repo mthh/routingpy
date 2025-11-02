@@ -52,3 +52,23 @@ class UtilsTest(_test.TestCase):
         self.assertEqual(utils.get_ordinal(1), "st")
         self.assertEqual(utils.get_ordinal(2), "nd")
         self.assertEqual(utils.get_ordinal(3), "rd")
+
+    def test_deep_merge_dicts(self):
+        d = {}
+        d = utils.deep_merge_dicts(d, {"k": "v"})
+        self.assertEqual(d, {"k": "v"})
+        d = utils.deep_merge_dicts(d, {"k": {"k1": 1, "k2": 2}})
+        self.assertEqual(d, {"k": {"k1": 1, "k2": 2}})
+        d = utils.deep_merge_dicts(
+            d,
+            {
+                "k": {
+                    "k1": 0,
+                }
+            },
+        )
+        self.assertEqual(d, {"k": {"k1": 0, "k2": 2}})
+        d = utils.deep_merge_dicts(d, {"l": []})
+        self.assertEqual(d, {"k": {"k1": 0, "k2": 2}, "l": []})
+        d = utils.deep_merge_dicts(d, {"l": [1]})
+        self.assertEqual(d, {"k": {"k1": 0, "k2": 2}, "l": [1]})
