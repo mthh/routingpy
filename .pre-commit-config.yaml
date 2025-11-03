@@ -14,3 +14,10 @@ repos:
     - id: isort
       name: isort (python)
       args: [--filter-files]
+- repo: local
+  hooks:
+    - id: no-absolute-imports
+      name: Disallow absolute self-imports
+      entry: python tests/scripts/check_imports.py routingpy routingpy
+      language: system
+      pass_filenames: false
