@@ -22,6 +22,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Fixed type hint on `Matrix.distances` and `Matrix.durations` ([#132](https://github.com/mthh/routingpy/pull/132))
 - Added missing support for `kwargs` to Valhalla's `matrix` creation function ([#135](https://github.com/mthh/routingpy/pull/135))
 - Fixed Valhalla's `expansion` method to follow the latest Valhalla API changes ([#142](https://github.com/mthh/routingpy/pull/142))
+- Updating params with `kwargs` [#145](https://github.com/mthh/routingpy/pull/145)
 
 ### Removed
 

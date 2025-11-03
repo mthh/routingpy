@@ -251,8 +251,13 @@ class Valhalla:
         if id:
             params["id"] = id
 
+        # We don't want the user to pass the unit as a kwarg, so we force it
+        # to be kilometers (the default unit of Valhalla) and convert the result to meters
+        # (the Direction class stores the distance in meters and handles the unit conversion)
+        kwargs["units"] = "kilometers"
+
         # update with kw args
-        params.update(kwargs)
+        params = utils.deep_merge_dicts(params, kwargs)
 
         return params
 
@@ -460,7 +465,7 @@ class Valhalla:
         if id:
             params["id"] = id
 
-        params.update(kwargs)
+        params = utils.deep_merge_dicts(params, kwargs)
 
         return params
 
@@ -623,7 +628,12 @@ class Valhalla:
         if id:
             params["id"] = id
 
-        params.update(kwargs)
+        # We don't want the user to pass the unit as a kwarg, so we force it
+        # to be kilometers (the default unit of Valhalla) and convert the result to meters
+        # (the Matrix class stores the distance in meters).
+        kwargs["units"] = "kilometers"
+
+        params = utils.deep_merge_dicts(params, kwargs)
 
         return params
 
@@ -743,7 +753,7 @@ class Valhalla:
         if expansion_properties:
             params["expansion_properties"] = expansion_properties
 
-        params.update(kwargs)
+        params = utils.deep_merge_dicts(params, kwargs)
 
         return params
 
@@ -846,7 +856,7 @@ class Valhalla:
             if options:
                 params["costing_options"][profile] = options
 
-        params.update(kwargs)
+        params = utils.deep_merge_dicts(params, kwargs)
 
         return params
 
