@@ -353,7 +353,7 @@ class Graphhopper:
                 if alternative_route_max_share_factor:
                     params["alternative_route_max_share_factor"] = alternative_route_max_share_factor
 
-        params.update(direction_kwargs)
+        params = utils.deep_merge_dicts(params, direction_kwargs)
 
         return self.parse_directions_json(
             self.client._request("/route", get_params=get_params, post_params=params, dry_run=dry_run),

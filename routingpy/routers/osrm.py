@@ -240,7 +240,7 @@ class OSRM:
         if overview is not None:
             params["overview"] = convert.convert_bool(overview)
 
-        params.update(directions_kwargs)
+        params = utils.deep_merge_dicts(params, directions_kwargs)
 
         return params
 
@@ -406,7 +406,7 @@ class OSRM:
         if annotations:
             params["annotations"] = convert.delimit_list(annotations)
 
-        params.update(matrix_kwargs)
+        params = utils.deep_merge_dicts(params, matrix_kwargs)
 
         return params
 

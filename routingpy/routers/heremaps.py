@@ -18,7 +18,7 @@
 from operator import itemgetter
 from typing import List, Optional, Tuple, Union
 
-from .. import convert
+from .. import convert, utils
 from ..client_base import DEFAULT
 from ..client_default import Client
 from ..direction import Direction, Directions
@@ -770,7 +770,7 @@ class HereMaps:
         if speed_profile is not None:
             params["speedProfile"] = speed_profile
 
-        params.update(directions_kwargs)
+        params = utils.deep_merge_dicts(params, directions_kwargs)
 
         return self.parse_direction_json(
             self.client._request(
@@ -1073,7 +1073,7 @@ class HereMaps:
         if speed_profile is not None:
             params["speedProfile"] = speed_profile
 
-        params.update(isochrones_kwargs)
+        params = utils.deep_merge_dicts(params, isochrones_kwargs)
 
         return self.parse_isochrone_json(
             self.client._request(
@@ -1370,7 +1370,7 @@ class HereMaps:
         if speed_profile is not None:
             params["speedProfile"] = speed_profile
 
-        params.update(matrix_kwargs)
+        params = utils.deep_merge_dicts(params, matrix_kwargs)
 
         return self.parse_matrix_json(
             self.client._request(

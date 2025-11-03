@@ -125,6 +125,25 @@ def get_ordinal(number):
         return "th"
 
 
+def deep_merge_dicts(d1: dict, d2: dict) -> dict:
+    """
+    Recursively deep merges two dictionaries.
+    Values from d2 will overwrite or be merged into d1.
+    """
+    if not d2:
+        return d1
+
+    result = d1.copy()  # Start with a shallow copy of dict1
+    for key, value in d2.items():
+        if key in result and isinstance(result[key], dict) and isinstance(value, dict):
+            # Both values are dicts: recurse
+            result[key] = deep_merge_dicts(result[key], value)
+        else:
+            # Otherwise, override or add
+            result[key] = value
+    return result
+
+
 def _get_coords(lat, lng, factor, order="lnglat"):
     """Determines coordinate order."""
     if order not in ("lnglat", "latlng"):

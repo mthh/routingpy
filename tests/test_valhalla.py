@@ -249,3 +249,45 @@ class ValhallaTest(_test.TestCase):
             self.assertIsInstance(pt, MatchedPoint)
             self.assertEqual(pt.match_type, "matched")
             self.assertGreaterEqual(pt.edge_index, 0)
+
+    @responses.activate
+    def test_units_kwarg_in_directions(self):
+        query = ENDPOINTS_QUERIES[self.name]["directions"]
+        query["units"] = "miles"  # This should be replaced by the client
+
+        responses.add(
+            responses.POST,
+            "https://api.mapbox.com/valhalla/v1/route",
+            status=200,
+            json=ENDPOINTS_RESPONSES[self.name]["directions"],
+            content_type="application/json",
+        )
+        _routes = self.client.directions(**query)
+
+        # The kwargs "units" should have been replaced by the client
+        # to "kilometers"
+        self.assertEqual(
+            json.loads(responses.calls[0].request.body.decode("utf-8"))["units"],
+            "kilometers",
+        )
+
+    @responses.activate
+    def test_units_kwarg_in_matrix(self):
+        query = ENDPOINTS_QUERIES[self.name]["matrix"]
+        query["units"] = "miles"  # This should be replaced by the client
+
+        responses.add(
+            responses.POST,
+            "https://api.mapbox.com/valhalla/v1/sources_to_targets",
+            status=200,
+            json=ENDPOINTS_RESPONSES[self.name]["matrix"],
+            content_type="application/json",
+        )
+        _routes = self.client.matrix(**query)
+
+        # The kwargs "units" should have been replaced by the client
+        # to "kilometers"
+        self.assertEqual(
+            json.loads(responses.calls[0].request.body.decode("utf-8"))["units"],
+            "kilometers",
+        )
