@@ -13,7 +13,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Added a `km` and a `mi` property to `Direction` class to get the distance in kilometers and miles ([#139](https://github.com/gis-ops/routingpy/issues/139)).
   Distance stored in `Direction.distance` are always in meters.
 - Added a `pred_edge_id` property to `Edge` class that is used in `Expansions`.
-- `geotiff` support for Valhalla's isochrones ([#150](https://github.com/mthh/routingpy/pull/150))
+- Added `geotiff` support for Valhalla's isochrones ([#150](https://github.com/mthh/routingpy/pull/150)).
+- Added `alternates` support for Valhalla's directions ([#152](https://github.com/mthh/routingpy/pull/152)).
 
 ### Fixed
 
@@ -23,7 +24,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Added missing support for `kwargs` to Valhalla's `matrix` creation function ([#135](https://github.com/mthh/routingpy/pull/135))
 - Fixed Valhalla's `expansion` method to follow the latest Valhalla API changes ([#142](https://github.com/mthh/routingpy/pull/142))
 - Updating params with `kwargs` [#145](https://github.com/mthh/routingpy/pull/145)
-- Relative import so submoduling works ([#150](https://github.com/mthh/routingpy/pull/150))
+- Relative import so submoduling works ([#151](https://github.com/mthh/routingpy/pull/151))
 
 ### Removed
 

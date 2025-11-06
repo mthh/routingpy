@@ -21,7 +21,7 @@ from typing import List, Optional, Sequence, Union
 from .. import utils
 from ..client_base import DEFAULT
 from ..client_default import Client
-from ..direction import Direction
+from ..direction import Direction, Directions
 from ..expansion import Edge, Expansions
 from ..isochrone import Isochrone, Isochrones
 from ..matrix import Matrix
@@ -122,6 +122,7 @@ class Valhalla:
         avoid_locations: Optional[List[List[float]]] = None,
         avoid_polygons: Optional[List[List[List[float]]]] = None,
         date_time: Optional[dict] = None,
+        alternatives: Optional[int] = None,
         id: Optional[Union[str, int, float]] = None,
         dry_run: Optional[bool] = None,
         **kwargs
@@ -172,6 +173,11 @@ class Valhalla:
             in ISO 8601 format (YYYY-MM-DDThh:mm), local time.
             E.g. date_time = {type: 0, value: 2021-03-03T08:06:23}
 
+        :param int alternatives: The amount of alternatives to request. Note, with 1 you should get 2 routes.
+            Also note that there may be no alternates or less alternates than what is requested and that
+            alternates are not yet supported on routes with more than 2 locations.
+            Default 0.
+
         :param id: Name your route request. If id is specified, the naming will be sent thru to the response.
 
         :param dry_run: Print URL and parameters without sending the request.
@@ -193,12 +199,14 @@ class Valhalla:
             avoid_locations,
             avoid_polygons,
             date_time,
+            alternatives,
             id,
             **kwargs
         )
 
         return self.parse_direction_json(
-            self.client._request("/route", post_params=params, dry_run=dry_run)
+            self.client._request("/route", post_params=params, dry_run=dry_run),
+            alternatives,
         )
 
     @staticmethod
@@ -213,6 +221,7 @@ class Valhalla:
         avoid_locations=None,
         avoid_polygons=None,
         date_time=None,
+        alternatives=None,
         id=None,
         **kwargs
     ):
@@ -249,6 +258,9 @@ class Valhalla:
         if date_time:
             params["date_time"] = date_time
 
+        if alternatives:
+            params["alternates"] = alternatives
+
         if id:
             params["id"] = id
 
@@ -263,19 +275,29 @@ class Valhalla:
         return params
 
     @staticmethod
-    def parse_direction_json(response):
+    def parse_direction_json(response, alternatives):
         if response is None:  # pragma: no cover
-            return Direction()
+            return Directions() if alternatives else Direction()
 
-        geometry, duration, distance = [], 0, 0
-        for leg in response["trip"]["legs"]:
-            geometry.extend(utils.decode_polyline6(leg["shape"]))
-            duration += leg["summary"]["time"]
-            distance += leg["summary"]["length"]
+        directions = []
+        routes = [response] if not alternatives else [response] + response.get("alternates", [])
 
-        distance *= 1000  # convert to meters
+        for route in routes:
+            geometry, duration, distance = [], 0, 0
+            for leg in route["trip"]["legs"]:
+                geometry.extend(utils.decode_polyline6(leg["shape"]))
+                duration += leg["summary"]["time"]
+                distance += leg["summary"]["length"]
 
-        return Direction(geometry=geometry, duration=int(duration), distance=int(distance), raw=response)
+            distance *= 1000  # convert to meters
+
+            directions.append(
+                Direction(
+                    geometry=geometry, duration=int(duration), distance=int(distance), raw=response
+                )
+            )
+
+        return Directions(directions, response) if alternatives else directions[0]
 
     def isochrones(  # noqa: C901
         self,
