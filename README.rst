@@ -49,7 +49,7 @@ in our documentation_.
 
 **routingpy** is tested against:
 
-- CPython versions 3.9, 3.10, 3.11, 3.12 and 3.13,
+- CPython versions 3.9, 3.10, 3.11, 3.12, 3.13 and 3.14,
 - PyPy3 versions 3.9 and 3.10.
 
 © routingpy contributors 2022 under the `Apache 2.0 License`_.
