@@ -88,7 +88,7 @@ notebooks = [
 ]
 
 [tool.poetry.group.dev.dependencies]
-sphinx = "^4.4.0"
+sphinx = ">=5.0"
 sphinx-rtd-theme = "^1.0.0"
 sphinxnotes-strike = "^1.2"
 responses = "^0.10.0"

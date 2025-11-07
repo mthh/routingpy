@@ -25,7 +25,7 @@ Installation
     pip install routingpy
 
 Routers
-~~~~~~~~~
+~~~~~~~
 
 .. automodule:: routingpy.routers
    :members: __doc__
@@ -71,18 +71,8 @@ MapboxOSRM
 
    .. automethod:: __init__
 
-MapboxValhalla
---------------
-
-.. autoclass:: routingpy.routers.MapboxValhalla
-   :members:
-   :inherited-members:
-   :show-inheritance:
-
-   .. automethod:: __init__
-
 OpenTripPlannerV2
---------------
+-----------------
 
 .. autoclass:: routingpy.routers.OpenTripPlannerV2
    :members:
@@ -129,7 +119,7 @@ Data
     :members: raw
 
 .. autoclass:: routingpy.direction.Direction
-    :members: geometry, duration, distance
+    :members: geometry, duration, distance, km, mi
 
 .. autoclass:: routingpy.isochrone.Isochrones
     :members: raw

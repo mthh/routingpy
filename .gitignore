@@ -13,6 +13,7 @@ test.py
 *.pyc
 *.idea/
 .DS_Store
+docs/_build/
 
 # Visual Studio Code
 .vscode
