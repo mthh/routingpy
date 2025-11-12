@@ -25,7 +25,6 @@ keywords = [
     "google-maps",
     "google-maps-api",
     "google-maps-directions-api",
-    "here-routing-api",
 ]
 classifiers = [
     "Development Status :: 5 - Production/Stable",

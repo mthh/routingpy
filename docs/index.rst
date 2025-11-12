@@ -55,14 +55,6 @@ Graphhopper
 
    .. automethod:: __init__
 
-HereMaps
---------
-
-.. autoclass:: routingpy.routers.HereMaps
-   :members:
-
-   .. automethod:: __init__
-
 MapboxOSRM
 ----------
 

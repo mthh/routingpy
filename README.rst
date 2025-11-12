@@ -37,7 +37,6 @@ or **time-distance matrices**.
 
 -  `Mapbox, OSRM`_
 -  `Openrouteservice`_
--  `Here Maps`_
 -  `Google Maps`_
 -  `Graphhopper`_
 -  `OpenTripPlannerV2`_
@@ -305,7 +304,6 @@ All these parameters, and more, can optionally be **globally set** for all route
 
 .. _Mapbox, OSRM: https://docs.mapbox.com/api/navigation
 .. _Openrouteservice: https://openrouteservice.org/dev/#/api-docs
-.. _Here Maps: https://developer.here.com/documentation
 .. _Google Maps: https://developers.google.com/maps/documentation
 .. _Graphhopper: https://graphhopper.com/api/1/docs
 .. _OpenTripPlannerV2: https://docs.opentripplanner.org/en/latest/
