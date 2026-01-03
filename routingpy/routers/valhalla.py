@@ -25,6 +25,7 @@ from ..direction import Direction, Directions
 from ..expansion import Edge, Expansions
 from ..isochrone import Isochrone, Isochrones
 from ..matrix import Matrix
+from ..optimized import OptimizedDirection
 from ..raster import Raster
 from ..valhalla_attributes import MatchedResults
 
@@ -946,7 +947,7 @@ class Valhalla:
 
         return MatchedResults(response)
 
-    def optimized(
+    def optimized_directions(
         self,
         locations: List[List[float]],
         profile: str,
@@ -962,11 +963,12 @@ class Valhalla:
         dry_run: Optional[bool] = None,
         **kwargs
     ):
-        """Get directions for the optimized route, where the first and last location are not optimized.
+        """Get directions for the optimized route, where the first and last location are not changed.
 
-        For more information, visit https://valhalla.github.io/valhalla/api/optimized/api-reference/.
+        This uses a simple simulated annealing algorithm to solve the TSP. For more information,
+        visit https://valhalla.github.io/valhalla/api/optimized/api-reference/.
 
-        Use ``kwargs`` for any missing ``optimized`` request options.
+        Use ``kwargs`` for any missing ``optimized_directions`` request options.
 
         :param locations: The coordinates tuple the optimized route should be calculated
             from. The order might change, depending on the solution of the TSP.
@@ -1035,9 +1037,32 @@ class Valhalla:
             **kwargs
         )
 
-        return self.parse_direction_json(
-            self.client._request("/optimized_route", post_params=params, dry_run=dry_run),
-            False,
+        return self.parse_optimized_json(
+            self.client._request("/optimized_route", post_params=params, dry_run=dry_run)
+        )
+
+    @staticmethod
+    def parse_optimized_json(response):
+        if response is None:  # pragma: no cover
+            return OptimizedDirection()
+
+        geometry, duration, distance, original_indices = [], 0, 0, []
+        for loc in response["trip"]["locations"]:
+            original_indices.append(loc["original_index"])
+
+        for leg in response["trip"]["legs"]:
+            geometry.extend(utils.decode_polyline6(leg["shape"]))
+            duration += leg["summary"]["time"]
+            distance += leg["summary"]["length"]
+
+        distance *= 1000  # convert to meters
+
+        return OptimizedDirection(
+            geometry=geometry,
+            duration=int(duration),
+            distance=int(distance),
+            raw=response,
+            original_indices=original_indices,
         )
 
     @staticmethod
