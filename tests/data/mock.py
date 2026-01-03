@@ -20,6 +20,12 @@ import random
 PARAM_POINT = [8.34234, 48.23424]
 PARAM_LINE = [[8.688641, 49.420577], [8.680916, 49.415776]]
 PARAM_LINE_MULTI = [[8.688641, 49.420577], [8.680916, 49.415776], [8.780916, 49.445776]]
+PARAM_LINE_OPTIMIZED = [
+    [8.688641, 49.420577],
+    [8.680916, 49.415776],
+    [8.720916, 49.435776],
+    [8.780916, 49.445776],
+]
 PARAM_POLY = [[[8.688641, 49.420577], [8.680916, 49.415776]]]
 
 PARAM_INT_BIG = 500
@@ -494,6 +500,63 @@ ENDPOINTS_RESPONSES = {
                     "begin_shape_index": 2,
                 },
             ],
+        },
+        "optimized_route": {
+            "trip": {
+                "locations": [
+                    {
+                        "type": "break",
+                        "lat": 49.420577,
+                        "lon": 8.688641,
+                        "side_of_street": "right",
+                        "original_index": 0,
+                    },
+                    {"type": "through", "lat": 49.415776, "lon": 8.680916, "original_index": 1},
+                    {"type": "through", "lat": 49.435776, "lon": 8.720916, "original_index": 2},
+                    {
+                        "type": "break",
+                        "lat": 49.445776,
+                        "lon": 8.780916,
+                        "side_of_street": "left",
+                        "original_index": 3,
+                    },
+                ],
+                "legs": [
+                    {
+                        "summary": {
+                            "has_time_restrictions": False,
+                            "has_toll": False,
+                            "has_highway": False,
+                            "has_ferry": False,
+                            "min_lat": 49.413745,
+                            "min_lon": 8.677946,
+                            "max_lat": 49.459559,
+                            "max_lon": 8.780544,
+                            "time": 11663.964,
+                            "length": 21.476,
+                            "cost": 21476.068,
+                        },
+                        "shape": "efkg}A_biqORlDhIvcBjHo@`]iC~Bg@`BObBOzYsCdRiBjM{ArAMrAKjb@yElSaAnDQdBWAjBI~NE|FI~LApD@jRIjj@H|O?bD?bCIbP?dT?X?j@Bpy@GbFOlLGhUCbNApEClLAbUEbB@~IpEJTBdK|At]rIj^dHhQdD`BDG`GHpVL~[JjD@~B`@t~@A~BEnBC`GNj~@rA\\fALvCd@lATfDl@Iub@Cqf@iC]mIwAiAU@_Ca@u~@A_CKkDWqs@FaGEoETi`AT_fADoD@uCNimBFcDByDa@ih@EgJGoGk@{r@GaHG}EaBomB_@{^C_EGcFe@{e@cAoz@CcDAy@?e@AuACgD{@u_AfMcA`a@gAzSc@pBEvBEv`@m@rFKnCBt@FtCb@D_CT{Cj@gI`D{a@oDg@{UeC{AUq@i@m@kA[kAKyBDoFTwIx@_Zd@ea@Kqt@?sQNwURmGR{DTyA`@_Bx@kCjByDx@iCTwAFaBAaBKiBSuCsAcKYwCSuCk@cJIwBe@ge@E_AIk@Si@W[[CUJQZGv@Ax@BjGJ`SA`AIt@mDpJoAnGi@rDmCbk@e@|Do@zB_AhAoAx@mBb@wBQaLaBjAwj@LiId@{Jj@}Jh@_JhAaUb@mKLwD@iGCyCSsAU{@g@kA]o@u@cAq@i@a@_@qA_Ak@]gBu@{A{@k@]e@c@o@cAcA_CeBiF]qAQ_AQmAQwBIoCYcHs@DmAeEqAuE_@{Aw@qCmAgFoDkN}CiM_@}A_AkEm@eCyAiF}AcF_@y@c@q@_@]c@a@OKgB[mAQuACy@B_BL_B\\aAb@m@f@e@n@_@v@Y`Aa@lBsApH{BdNaAtHkAnMyA|QqBvLqCzKuDhLq@eAMe@Og@WeBI{C|@wOzA{QXwLTcN\\wLb@eR^gO|@wIDoBM_Cm@oCsD{RyA_SiAcJyDwPiEqQmEmQaD_JwB}F_A_GiAqNuAuO_@oEyAkHaCaNuE{ZuKot@}BuOmBeM_A{GcCsOcDcQoA}IoA{HsAyKi@mD{@qCiC{GqBmDcC{BcCuBcByAsDoC_Aq@q@o@g@u@w@qAuBaEsGcMmHaLkAwAwAeBeJqHoGgIaJcFyHiFsIqF_BaBc@wAQ{ByJnCeIpBsVtB}HGsJ[aGkA_GiAiH}BcIuDyHuEoEqCwDkDeC{A{EoBoDaAkBg@{BWyAC{CBiBFaKj@gEGcCKqAO{EyAwEu@}DUcFE}C[qCk@_GiBoDm@oEg@yDEwGWkHo@yIeAcF_@wCEiHf@iDVwBB_CIwBUaJmByCm@aBm@yJcEwH}DoGsFqFoG{HiK{H}KyI}NgDoGw@wBeCiJoAmFaAuFgLa`@sJuRgJiX}AkEqAaF]iB[aBOwAK{AKsBAoDV}JLcDPeDPmBd@}Cn@kC~@}CxAqEfEuKnBcF`CgH~CeKtAsD`BeDfAeBxAmBrH{G~K{IbBoAdAkAn@oANo@L}@FiA?{@Gu@O}@Su@k@y@y@e@u@Eq@Lq@\\gIbGaGdDyBr@}Bb@mJvBgE|@cDdAeB~@uAv@eGbEaIdGqKjHmH|FgExCoDzCeBhBuAnB{BnDmIrMoE`H}Vh_@aA|AgBjCk@n@u@n@]ZkCtBa@yBsAqGkA}DkC{FqM_XgRs]wRi]yNeY_Pm`@}Nec@iJaa@iI}g@a@kCmBqO]gC[uCWmC_@sD\\eCNcBNcD@iDQiDc@mEm@{Es@kHs@aFyAqLcD_U}CmQiIua@}EwQyAqHyC{OaLwk@iDiQiBeJw@{Dw@yCk@eBmB_EqCkF{M_YuHiWw@uEe@yDW_FQeFAuFBsEFcDJmCJmBHwA_@_COaDByODwQNuM^aQh@aPTcF\\kF|Gcq@hD_e@ZsDb@uEfAcIbAiI~@wI\\{ENsEDgECmIGiHe@uHy@_I_BqJqAsJqDeXyDmYkBmJiK_c@cNul@}Dol@sFgBaBMcAl@o@v@y@~Ak@jBe@tCO`De@`ZmYfzFeCrZ}_@fwC`Arb@v@lPrBvQfBxK{PkB{HqAmIu@uJ{@tBbDfBrFjBrJf@pHJzEOjE_@lEc@`Cq@fD}ANqp@ByzAyNo`@sDsWaCsYeEm~@sQgXyDsK{AaFsAuGkC}MmHck@s^cLuHwG_EwFiCkGmBsGcAgFOyFIuc@t@oz@`AkYRw[iAe]_AcX`CsSjHcQnJy_@pTg[jSsUpQqLtEqAfAgArCdBr@dBh@zA\\pEv@vF|@rFt@jE^fBHzBB|Mc@dN}@xOiAjBKfB?xA@|AHlAJtBZhDp@fJjCtJ`DxNzFbEfBpAx@n@j@f@n@Xv@Tz@LrACfAKt@]tAo@`B_EhI_BfD}@~CaAfDcE~PgEnRsApGgAzG}CzVeBlPrDuFnJuRnFsIzAcBrAoAbEiChFaDjF{BxDkAjE{@xDa@hB@rANjAX|@`@`BnAdC|ChGzGzFtFzMxLpFbF`F`F|BzB~ApBzE~GhEhFbDhDjVpUrN|MvEtDtVjPdCtBtArAjAnAxAvBrEnJ~DxIdA~BjA`E|@zErAhKz@`FbBjH|AzFzDjL`C~FbDhGjDbFbDfD~BfBxDrA~Cf@fEFrDKlEm@vDqAxC}AzK}GvKaIvMiHvMqE~McEfIeB|FiApFQpID`E@fF^jD`AzDdBjE~CdIbHfGlGtF|HnPj]tCrGtCfIrEbQ`Mbe@r@xBfAfCfBhDxAdBlAz@n@Xv@PbABx@Mr@W|@i@~AiBrCcEpEuK~DsP|CgNfEiNtFyNnRkj@fTe]vTiRx@s@hCeCxAuBv@sAv@}@z@g@pA_@rAMpBFpBf@jChAvBpAbKlGzJxH`IjJfIpLlIfMvDlF`BnBbClB|BfAfFnBjA`An@|@`@`APfA@hAIz@Ur@a@~@Yd@Xe@`@_ATs@H{@AiAQgAa@aAo@}@kAaAgFoB}BgAcCmBaBoBwDmFmIgMgIqLaIkJ{JyHcKmGwBqAkCiAqBg@qBGsALqA^{@f@w@|@w@rAyAtBiCdCqV|SgTd]oRjj@uFxNgEhN}CfN_ErPqEtKsCbE_BhB}@h@s@Vy@LcACw@Qo@YmA{@yAeBgBiDgAgCs@yBaMce@sEcQuCgIuCsGoPk]uF}HgGmGeIcHkE_D{DeBkDaAgF_@aEAqIEqFP}FhAgIdB_NbEwMpEwMhHwK`I{K|GyC|AwDpAmEl@sDJgEG_Dg@yDsA_CgBcDgDkDcFcDiGaC_G{DkL}A{FcBkH{@aFsAiK}@{EkAaEeA_C_EyIsEoJyAwBkAoAuAsAeCuBuVkPwEuDsN}MkVqUcDiDiEiF{E_H_BqB}B{BaFaFqFcF{MyL{FuFiG{GeC}CaBoA}@a@kAYsAOiBAyD`@kEz@yDjAkFzBiF`DcEhCsAnA{AbBoFrIoJtRsDtFdBmP|C{VfA{GrAqGfEoRbE_Q`AgD|@_D~AgD~DiIn@aB\\uAJu@BgAMsAU{@Yw@g@o@o@k@qAy@cEgByN{FuJaDgJkCiDq@uB[mAK}AIyAAgB?kBJyOhAeN|@}Mb@{BCgBIkE_@sFu@wF}@qEw@{A]eBi@eBs@}@EcEtAoCz@aJjDoC~@qElAmFlA}JlA{Fv@eRfCcYlEgUzCoTzCuQt@_PQso@}G{EgBoKqD_YqJy`@qd@{a@st@{Sk_AgNozBgBwY[_DqB_T_Fe_@qJid@aG_VgMmd@s_@sdA_M_n@gd@ghB{EaQcBoIuAwIg@qFe@uJMkUVaKvC_`@pA_XtAcz@x@aRjBoXZqGHoJ[gGyE{a@a@_HwBuA}Ae@kCaCoCwDuJkR{Zeq@mf@_r@us@qz@}CmHeD}IsCgLw@qHQiIp@cV~@kUvDor@vAqXxBe\\dG_s@jFei@nCmYl@iEf@wDHaBJuBEaC]}Bs@qFaCyNi@iDUwDB_FaAoHgB}MuBsN}CwQoCyUsB{QoEgc@aBo^yA}^LkXnI{_@zOy]zYsk@zZ_t@~`@g{@r\\up@pO{_@jHyW|EkT|FkW~DqQpA{FKyCC{CCmC?aA?kBT}y@p@kc@v@wO`ByI~CiJxLk[je@whApZqv@jSab@dNq]`MkXhCcLTqEGkGWoLeAm`@g@q[]}Y]cJa@eUe@qNqAwOvBqDfM_T`L{Lb_@ob@ba@gj@b_@ad@`T_P`m@{Ufa@hCdm@jKnQbHzM`ClPaG`LoLlLuRpFsPw@wJ{BwLqHcSsOwUgXoTmWj@{a@jH}Q`@{P_Bea@qJuI{E}EgFaH{SmEqScIoWiVgf@iKsSnOzDhXxUlIvMdRzYpVjLnOkDxTkLpV{]hJwQ`SmLlPwMpOwIhX?nd@`CbYmLdRmTvi@st@he@{]z\\eP",
+                    }
+                ],
+                "summary": {
+                    "has_time_restrictions": False,
+                    "has_toll": False,
+                    "has_highway": False,
+                    "has_ferry": False,
+                    "min_lat": 49.413745,
+                    "min_lon": 8.677946,
+                    "max_lat": 49.459559,
+                    "max_lon": 8.780544,
+                    "time": 11663.964,
+                    "length": 21.476,
+                    "cost": 21476.068,
+                },
+                "status_message": "Found route between points",
+                "status": 0,
+                "units": "kilometers",
+                "language": "en-US",
+            }
         },
     },
     "osrm": {
@@ -1255,6 +1318,25 @@ ENDPOINTS_QUERIES = {
             "somerandom": "option",
             "units": "kilometers",
         },
+        "optimized_route": {
+            "locations": PARAM_LINE_OPTIMIZED,
+            "options": {
+                "maneuver_penalty": PARAM_INT_SMALL,
+                "toll_booth_cost": PARAM_INT_SMALL,
+                "country_crossing_penalty": PARAM_INT_SMALL,
+            },
+            "profile": "auto",
+            "preference": "shortest",
+            "directions_type": "none",
+            "avoid_locations": PARAM_POINT,
+            "avoid_polygons": PARAM_POLY,
+            "date_time": {"type": 1, "value": "2021-03-03T08:06"},
+            "language": "pirate",
+            "instructions": False,
+            "id": "wacko2",
+            "somerandom": "option",
+            "units": "kilometers",
+        },
         "alternatives": {
             "locations": [[-83.271400, 42.358528], [-82.749855, 42.43892]],
             "profile": "auto",
@@ -1473,6 +1555,31 @@ ENDPOINTS_EXPECTED = {
                     "country_crossing_penalty": PARAM_INT_SMALL,
                 }
             },
+        },
+        "optimized_route": {
+            "costing": "auto",
+            "narrative": False,
+            "locations": [
+                {"lon": 8.688641, "lat": 49.420577},
+                {"lon": 8.680916, "lat": 49.415776},
+                {"lon": 8.720916, "lat": 49.435776},
+                {"lon": 8.780916, "lat": 49.445776},
+            ],
+            "costing_options": {
+                "auto": {
+                    "maneuver_penalty": 50,
+                    "toll_booth_cost": 50,
+                    "country_crossing_penalty": 50,
+                    "shortest": True,
+                }
+            },
+            "directions_options": {"language": "pirate", "directions_type": "none"},
+            "avoid_locations": [{"lon": 8.34234, "lat": 48.23424}],
+            "avoid_polygons": [[[8.688641, 49.420577], [8.680916, 49.415776]]],
+            "date_time": {"type": 1, "value": "2021-03-03T08:06"},
+            "id": "wacko2",
+            "somerandom": "option",
+            "units": "kilometers",
         },
     },
     "graphhopper": {

@@ -946,6 +946,100 @@ class Valhalla:
 
         return MatchedResults(response)
 
+    def optimized(
+        self,
+        locations: List[List[float]],
+        profile: str,
+        preference: Optional[str] = None,
+        options: Optional[dict] = None,
+        instructions: Optional[bool] = False,
+        language: Optional[str] = None,
+        directions_type: Optional[str] = None,
+        avoid_locations: Optional[List[List[float]]] = None,
+        avoid_polygons: Optional[List[List[List[float]]]] = None,
+        date_time: Optional[dict] = None,
+        id: Optional[Union[str, int, float]] = None,
+        dry_run: Optional[bool] = None,
+        **kwargs
+    ):
+        """Get directions for the optimized route, where the first and last location are not optimized.
+
+        For more information, visit https://valhalla.github.io/valhalla/api/optimized/api-reference/.
+
+        Use ``kwargs`` for any missing ``optimized`` request options.
+
+        :param locations: The coordinates tuple the optimized route should be calculated
+            from. The order might change, depending on the solution of the TSP.
+            Can be a list/tuple of [lon, lat] or :class:`Valhalla.WayPoint` instance or
+            a combination of both.
+
+        :param profile: Specifies the mode of transport to use when calculating
+            directions. One of ["auto", "auto_shorter" (deprecated), "bicycle", "bus", "hov", "motor_scooter",
+            "motorcycle", "multimodal", "pedestrian"].
+
+        :param preference: Convenience argument to set the cost metric, one of ['shortest', 'fastest']. Note,
+            that shortest is not guaranteed to be absolute shortest for motor vehicle profiles. It's called ``preference``
+            to be inline with the already existing parameter in the ORS adapter.
+
+        :param options: Profiles can have several options that can be adjusted to develop the route path,
+            as well as for estimating time along the path. Only specify the actual options dict, the profile
+            will be filled automatically. For more information, visit:
+            https://valhalla.github.io/valhalla/api/turn-by-turn/api-reference/#costing-options
+
+        :param instructions: Whether to return turn-by-turn instructions. Named for compatibility with other
+            providers. Valhalla's parameter here is 'narrative'.
+
+        :param language: The language of the narration instructions based on the IETF BCP 47 language tag string.
+            One of ['ca', 'cs', 'de', 'en', 'pirate', 'es', 'fr', 'hi', 'it', 'pt', 'ru', 'sl', 'sv']. Default 'en'.
+
+        :param directions_type: 'none': no instructions are returned. 'maneuvers': only maneuvers are returned.
+            'instructions': maneuvers with instructions are returned. Default 'instructions'.
+
+        :param avoid_locations: A set of locations to exclude or avoid within a route.
+            Specified as a list of coordinates, similar to coordinates object.
+
+        :param avoid_polygons: One or multiple exterior rings of polygons in the form of nested
+            JSON arrays, e.g. [[[lon1, lat1], [lon2,lat2]],[[lon1,lat1],[lon2,lat2]]]. Roads intersecting these rings
+            will be avoided during path finding. If you only need to avoid a few specific roads, it's much more
+            efficient to use avoid_locations. Valhalla will close open rings (i.e. copy the first coordingate to the
+            last position).
+
+        :param date_time: This is the local date and time at the location. Field ``type``: 0: Current departure time,
+            1: Specified departure time. Field ``value```: the date and time is specified
+            in ISO 8601 format (YYYY-MM-DDThh:mm), local time.
+            E.g. date_time = {type: 0, value: 2021-03-03T08:06:23}
+
+        :param id: Name your route request. If id is specified, the naming will be sent thru to the response.
+
+        :param dry_run: Print URL and parameters without sending the request.
+
+        :param kwargs: any additional keyword arguments which will override parameters.
+
+        :returns: A route optimized by TSP from provided coordinates and restrictions.
+        :rtype: :class:`routingpy.direction.Direction`
+        """
+
+        params = self.get_direction_params(
+            locations,
+            profile,
+            preference,
+            options,
+            instructions,
+            language,
+            directions_type,
+            avoid_locations,
+            avoid_polygons,
+            date_time,
+            False,  # alternatives
+            id,
+            **kwargs
+        )
+
+        return self.parse_direction_json(
+            self.client._request("/optimized_route", post_params=params, dry_run=dry_run),
+            False,
+        )
+
     @staticmethod
     def _build_locations(coordinates):
         """Build the locations object for all methods"""

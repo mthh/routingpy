@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Added a `pred_edge_id` property to `Edge` class that is used in `Expansions`.
 - Added `geotiff` support for Valhalla's isochrones ([#150](https://github.com/mthh/routingpy/pull/150)).
 - Added `alternates` support for Valhalla's directions ([#152](https://github.com/mthh/routingpy/pull/152)).
+- Added `/optimized_route` endpoint to Valhalla ([#160](https://github.com/mthh/routingpy/pull/160)).
 
 ### Fixed
 
