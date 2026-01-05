@@ -128,6 +128,9 @@ Data
 .. autoclass:: routingpy.expansion.Edge
     :members: geometry, distance, duration, cost, edge_id, status
 
+.. autoclass:: routingpy.optimized.OptimizedDirection
+    :members: geometry, duration, distance, km, mi, original_index
+
 .. autofunction:: routingpy.utils.decode_polyline5
 
 .. autofunction:: routingpy.utils.decode_polyline6
