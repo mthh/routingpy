@@ -22,7 +22,7 @@ from typing import List, Optional
 
 class OptimizedDirection(object):
     """
-    Contains a parsed directions' response. Access via properties ``geometry``, ``duration``, ``distance``
+    Contains a parsed optimized_directions's response. Access via properties ``geometry``, ``duration``, ``distance``
     and ``original_indices``.
     """
 
