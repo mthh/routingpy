@@ -28,7 +28,7 @@ class OptimizedDirection(object):
 
     def __init__(self, geometry=None, duration=None, distance=None, original_indices=None, raw=None):
         """
-        Initialize a :class:`Direction` object to hold the properties of a directions request.
+        Initialize a :class:`OptimizedDirection` object to hold the properties of an optimized direction request.
 
         :param geometry: The geometry list in [[lon1, lat1], [lon2, lat2]] order.
         :type geometry: list of list
@@ -117,4 +117,4 @@ class OptimizedDirection(object):
         return self._raw
 
     def __repr__(self):  # pragma: no cover
-        return "Direction({}, {}, {})".format(self.geometry, self.duration, self.distance)
+        return "OptimizedDirection({}, {}, {})".format(self.geometry, self.duration, self.distance)

@@ -1018,7 +1018,7 @@ class Valhalla:
         :param kwargs: any additional keyword arguments which will override parameters.
 
         :returns: A route optimized by TSP from provided coordinates and restrictions.
-        :rtype: :class:`routingpy.direction.Direction`
+        :rtype: :class:`routingpy.optimized.OptimizedDirection`
         """
 
         params = self.get_direction_params(
