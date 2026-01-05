@@ -23,7 +23,7 @@ from typing import List, Optional
 class OptimizedDirection(object):
     """
     Contains a parsed optimized_directions's response. Access via properties ``geometry``, ``duration``, ``distance``
-    and ``original_indices``.
+    and ``original_index``.
     """
 
     def __init__(self, geometry=None, duration=None, distance=None, original_indices=None, raw=None):
@@ -97,7 +97,6 @@ class OptimizedDirection(object):
         """
         return self.distance * 0.0006213712
 
-    @property
     def original_index(self, reordered_index: int) -> int:
         """
         The original (input) location index for the ``reordered_index`` element of the response locations.
