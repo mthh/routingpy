@@ -43,8 +43,7 @@ class OptimizedDirection(object):
             waypoints to the input.
         :param original_indices: list[int]
 
-        :param raw: The raw response of an individual direction (for multiple alternative routes) or the whole direction
-            response.
+        :param raw: The raw JSON response
         :type raw: dict
         """
         self._geometry = geometry
