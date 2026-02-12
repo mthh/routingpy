@@ -192,7 +192,7 @@ class IGN:
         params["end"] = format_coord(end)
 
         if intermediates:
-            formatted = convert.delimit_list([i for i in intermediates], "|")
+            formatted = convert.delimit_list([format_coord(i) for i in intermediates], "|")
             params["intermediates"] = formatted
 
         if not resource:
@@ -260,8 +260,8 @@ class IGN:
 
         return Direction(
             geometry=geometry,
-            duration=key_to_int("distance"),
-            distance=key_to_int("duration"),
+            duration=key_to_int("duration"),
+            distance=key_to_int("distance"),
             raw=response,
         )
 

@@ -10,7 +10,7 @@ eventually be able to cover all remote open source routing API's, but have to re
 <!-- TOC depthFrom:1 depthTo:6 withLinks:1 updateOnSave:0 orderedList:0 -->
 
 - [Issues](#issues)
-- [Submitting fixes](#submitting-fixes)
+- [Pull requests](#pull-requests)
   - [Setup](#setup)
   - [Tests](#tests)
   - [Documentation](#documentation)
@@ -101,7 +101,7 @@ docstrings. To build the documentation:
 ```bash
 # From the root of your git project
 cd docs
-make hmtl
+make html
 ```
 
 The documentation will have been added to `routingpy/docs/build/html` and you can open `index.html` in your web browser to view

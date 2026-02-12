@@ -100,7 +100,7 @@ Or the lastest from source
 
 .. code:: bash
 
-   pip install git+git://github.com/mthh/routingpy
+   pip install git+https://github.com/mthh/routingpy.git
 
 
 API
