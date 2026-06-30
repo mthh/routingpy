@@ -28,52 +28,45 @@ jobs:
     strategy:
       matrix:
         python_version: [
-            '3.9',
             '3.10',
             '3.11',
             '3.12',
             '3.13',
             '3.14',
-            'pypy3.9',
             'pypy3.10',
         ]
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v7
 
-    - name: Set up Python ${{ matrix.python_version }}
-      uses: actions/setup-python@v4
+    - name: Install uv
+      uses: astral-sh/setup-uv@v8
       with:
         python-version: ${{ matrix.python_version }}
-        cache: pip
+        enable-cache: true
 
-    - uses: actions/cache@v4
+    - uses: actions/cache@v6
       with:
         path: ~/.cache/pre-commit
         key: pre-commit-${{ hashFiles('.pre-commit-config.yaml') }}
 
-    - name: Install Poetry
-      run: |
-        curl -sSL https://install.python-poetry.org | python3 -
-        poetry --version
-
     - name: Install dependencies
       run: |
-        poetry install --with dev
+        uv sync --group dev
 
     - name: Style & lint checks
       run: |
-        poetry run pre-commit run --all-files --color=always
+        uv run pre-commit run --all-files --color=always
 
     - name: pytest and coverage
       run: |
-        poetry run coverage run --source=routingpy --module pytest
-        poetry run coverage lcov --include "routingpy/*"
+        uv run coverage run --source=routingpy --module pytest
+        uv run coverage lcov --include "routingpy/*"
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Upload coverage artifact
       if: matrix.python_version == '3.12'
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v7
       with:
         name: coverage-lcov
         path: coverage.lcov
@@ -82,9 +75,9 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Download coverage artifact
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         with:
           name: coverage-lcov
       - name: Send coverage to Coveralls

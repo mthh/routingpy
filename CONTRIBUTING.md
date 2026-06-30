@@ -43,7 +43,7 @@ When contributing, we expect you to:
 
 ### Setup
 
-Required: Python 3.9 or higher, [`poetry`](https://github.com/python-poetry/poetry) and `git`.
+Required: Python 3.10 or higher, [`uv`](https://github.com/astral-sh/uv) and `git`.
 
 1. Clone the repository:
 
@@ -52,33 +52,25 @@ git clone https://github.com/mthh/routingpy
 cd routingpy
 ```
 
-2. Create and activate a new virtual environment:
+2. Install development dependencies (uv creates and manages the virtual environment in `.venv`):
 
 ```bash
 # From the root of your git project
-python3 -m venv .venv
-source .venv/bin/activate
+uv sync --group dev
 ```
 
-3. Install development dependencies:
+3. Run tests to check if all goes well:
 
 ```bash
 # From the root of your git project
-poetry install --with dev
+uv run pytest -v
 ```
 
-4. Run tests to check if all goes well:
+4. Please install the pre-commit hook, so your code gets auto-formatted and linted before committing it:
 
 ```bash
 # From the root of your git project
-pytest -v
-```
-
-5. Please install the pre-commit hook, so your code gets auto-formatted and linted before committing it:
-
-```bash
-# From the root of your git project
-poetry run pre-commit install
+uv run pre-commit install
 ```
 
 ### Tests
@@ -90,7 +82,7 @@ updates on providers' API changes.
 
 ```bash
 # From the root of your git project
-coverage run --source=routingpy --module pytest
+uv run coverage run --source=routingpy --module pytest
 ```
 
 ### Documentation
