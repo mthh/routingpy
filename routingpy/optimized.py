@@ -15,7 +15,7 @@
 # the License.
 #
 """
-:class:`.OptimizedDirection` returns TSP-optimized directions results.
+`OptimizedDirection` returns TSP-optimized directions results.
 """
 from typing import List, Optional
 
@@ -28,7 +28,7 @@ class OptimizedDirection(object):
 
     def __init__(self, geometry=None, duration=None, distance=None, original_indices=None, raw=None):
         """
-        Initialize a :class:`OptimizedDirection` object to hold the properties of an optimized direction request.
+        Initialize a `OptimizedDirection` object to hold the properties of an optimized direction request.
 
         :param geometry: The geometry list in [[lon1, lat1], [lon2, lat2]] order.
         :type geometry: list of list

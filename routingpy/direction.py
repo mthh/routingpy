@@ -15,23 +15,23 @@
 # the License.
 #
 """
-:class:`.Direction` returns directions results.
+`Direction` returns directions results.
 """
 from typing import List, Optional
 
 
 class Directions(object):
     """
-    Contains a list of :class:`Direction`, when the router returned multiple alternative routes, and the complete raw
+    Contains a list of `Direction`, when the router returned multiple alternative routes, and the complete raw
     response, which can be accessed via the property ``raw``.
     """
 
     def __init__(self, directions=None, raw=None):
         """
-        Initialize a :class:`Directions` instance to hold multiple :class:`Direction` instances in a list-like fashion.
+        Initialize a `Directions` instance to hold multiple `Direction` instances in a list-like fashion.
 
-        :param directions: List of :class:`Direction` objects
-        :type directions: list of :class:`Direction`
+        :param directions: List of `Direction` objects
+        :type directions: list of `Direction`
 
         :param raw: The whole raw directions response of the routing engine.
         :type raw: dict
@@ -67,7 +67,7 @@ class Direction(object):
 
     def __init__(self, geometry=None, duration=None, distance=None, raw=None):
         """
-        Initialize a :class:`Direction` object to hold the properties of a directions request.
+        Initialize a `Direction` object to hold the properties of a directions request.
 
         :param geometry: The geometry list in [[lon1, lat1], [lon2, lat2]] order.
         :type geometry: list of list

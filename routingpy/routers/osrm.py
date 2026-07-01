@@ -48,29 +48,29 @@ class OSRM:
         :type base_url: str
 
         :param user_agent: User Agent to be used when requesting.
-            Default :attr:`routingpy.routers.options.default_user_agent`.
+            Default `default_user_agent`.
         :type user_agent: str
 
         :param timeout: Combined connect and read timeout for HTTP requests, in
-            seconds. Specify ``None`` for no timeout. Default :attr:`routingpy.routers.options.default_timeout`.
+            seconds. Specify ``None`` for no timeout. Default `default_timeout`.
         :type timeout: int or None
 
         :param retry_timeout: Timeout across multiple retriable requests, in
-            seconds.  Default :attr:`routingpy.routers.options.default_retry_timeout`.
+            seconds.  Default `default_retry_timeout`.
         :type retry_timeout: int
 
         :param retry_over_query_limit: If True, client will not raise an exception
             on HTTP 429, but instead jitter a sleeping timer to pause between
             requests until HTTP 200 or retry_timeout is reached.
-            Default :attr:`routingpy.routers.options.default_retry_over_query_limit`.
+            Default `default_retry_over_query_limit`.
         :type retry_over_query_limit: bool
 
-        :param skip_api_error: Continue with batch processing if a :class:`routingpy.exceptions.RouterApiError` is
+        :param skip_api_error: Continue with batch processing if a `RouterApiError` is
             encountered (e.g. no route found). If False, processing will discontinue and raise an error.
-            Default :attr:`routingpy.routers.options.default_skip_api_error`.
+            Default `default_skip_api_error`.
         :type skip_api_error: bool
 
-        :param client: A client class for request handling. Needs to be derived from :class:`routingpy.client_base.BaseClient`
+        :param client: A client class for request handling. Needs to be derived from `BaseClient`
         :type client: abc.ABCMeta
 
         :param client_kwargs: Additional arguments passed to the client, such as headers or proxies.
@@ -165,7 +165,7 @@ class OSRM:
         :param dry_run: bool
 
         :returns: One or multiple route(s) from provided coordinates and restrictions.
-        :rtype: :class:`routingpy.direction.Direction` or :class:`routingpy.direction.Directions`
+        :rtype: `Direction` or `Directions`
         """
         coords = convert.delimit_list(
             [convert.delimit_list([convert.format_float(f) for f in pair]) for pair in locations], ";"
@@ -351,7 +351,7 @@ class OSRM:
         :type annotations: List[str]
 
         :returns: A matrix from the specified sources and destinations.
-        :rtype: :class:`routingpy.matrix.Matrix`
+        :rtype: `Matrix`
 
         .. versionchanged:: 0.3.0
            Add annotations parameter to get both distance and duration

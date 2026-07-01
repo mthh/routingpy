@@ -64,7 +64,7 @@ class Client(BaseClient):
             requests until HTTP 200 or retry_timeout is reached.
         :type retry_over_query_limit: bool
 
-        :param skip_api_error: Continue with batch processing if a :class:`routingpy.exceptions.RouterApiError` is
+        :param skip_api_error: Continue with batch processing if a `RouterApiError` is
             encountered (e.g. no route found). If False, processing will discontinue and raise an error. Default False.
         :type skip_api_error: bool
 
@@ -119,7 +119,7 @@ class Client(BaseClient):
 
         :param first_request_time: The time of the first request (None if no
             retries have occurred).
-        :type first_request_time: :class:`datetime.datetime`
+        :type first_request_time: `datetime`
 
         :param retry_counter: The number of this retry, or zero for first attempt.
         :type retry_counter: int
@@ -221,7 +221,7 @@ class Client(BaseClient):
 
     @property
     def req(self):
-        """Holds the :class:`requests.PreparedRequest` property for the last request."""
+        """Holds the `PreparedRequest` property for the last request."""
         return self._req
 
     @staticmethod

@@ -9,24 +9,19 @@ jobs:
   build_wheels:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
-      - name: Set up Python
-        uses: actions/setup-python@v4
+      - name: Install uv
+        uses: astral-sh/setup-uv@v8
         with:
           python-version: "3.12"
 
-      - name: Install Poetry
-        run: |
-          curl -sSL https://install.python-poetry.org | python3 -
-          poetry --version
-
       - name: Build Wheels
         run: |
-          poetry build
+          uv build
 
       - name: Upload distributions (wheels and sdist)
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: distributions
           path: dist/*
@@ -36,17 +31,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Set up python
-        uses: actions/setup-python@v2
-        with:
-          python-version: "3.12"
-
       - name: Download distributions
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         with:
           name: distributions
           path: dist
 
-      - uses: pypa/gh-action-pypi-publish@v1.13.0
+      - uses: pypa/gh-action-pypi-publish@v1.14.0
         with:
           password: ${{ secrets.PYPI_PASS }}

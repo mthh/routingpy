@@ -1,0 +1,129 @@
+[project]
+site_name = "routingpy"
+# Page sources live in docs/content/ so this config file (and the
+# GitHub-facing docs/README.md) stay out of the built site.
+docs_dir = "content"
+# Emit page.html instead of page/index.html so the built site can be opened
+# directly from disk (file://) as well as served over HTTP / GitHub Pages.
+use_directory_urls = false
+site_description = "One lib to route them all — a Python client for popular routing web services."
+site_url = "https://mthh.github.io/routingpy/"
+repo_url = "https://github.com/mthh/routingpy"
+repo_name = "mthh/routingpy"
+edit_uri = "edit/master/docs/content/"
+copyright = "Copyright &copy; routingpy Contributors"
+
+nav = [
+  { "Home" = "index.md" },
+  { "API Reference" = [
+      "api/index.md",
+      { "Routers" = [
+          { "Google" = "api/google.md" },
+          { "GraphHopper" = "api/graphhopper.md" },
+          { "IGN" = "api/ign.md" },
+          { "Mapbox (OSRM)" = "api/mapbox.md" },
+          { "OpenTripPlanner v2" = "api/opentripplanner.md" },
+          { "openrouteservice" = "api/ors.md" },
+          { "OSRM" = "api/osrm.md" },
+          { "Valhalla" = "api/valhalla.md" },
+      ] },
+      { "Client" = "api/client.md" },
+      { "Data classes" = "api/data.md" },
+      { "Exceptions" = "api/exceptions.md" },
+  ] },
+]
+
+# ----------------------------------------------------------------------------
+# Theme — mirrors valhalla/docs/mkdocs.yml
+# ----------------------------------------------------------------------------
+[project.theme]
+name = "material"
+features = [
+  "content.tabs.link",
+  "navigation.instant",
+  # collapsible nav tree (no navigation.sections, which forces groups open)
+  "navigation.indexes",
+  "navigation.top",
+  "toc.follow",
+  "content.code.copy",
+]
+
+[[project.theme.palette]]
+scheme = "default"
+primary = "black"
+accent = "deep purple"
+toggle.icon = "material/brightness-7"
+toggle.name = "Switch to dark mode"
+
+[[project.theme.palette]]
+scheme = "slate"
+primary = "white"
+accent = "lime"
+toggle.icon = "material/brightness-4"
+toggle.name = "Switch to light mode"
+
+# ----------------------------------------------------------------------------
+# Plugins
+# ----------------------------------------------------------------------------
+[project.plugins.search]
+enabled = true
+
+# mkdocstrings — handler options mirror valhalla/docs/mkdocs.yml.
+# Docstrings are kept in Sphinx/reStructuredText style (:param:, :type:,
+# :returns:, :rtype:, :raises:), parsed natively by Griffe's sphinx parser.
+[project.plugins.mkdocstrings]
+default_handler = "python"
+
+[project.plugins.mkdocstrings.handlers.python.options]
+# parse :param:/:returns:/:raises: RST directives in docstrings
+docstring_style = "sphinx"
+# render param/return/raise blocks as a typed table with a description column
+docstring_section_style = "spacy"
+# list members in source order, not alphabetical
+members_order = "source"
+# colored type icons (class / method / attr) in headings and the table of contents
+show_symbol_type_heading = true
+show_symbol_type_toc = true
+# render the symbol's name as the page's main heading
+show_root_heading = true
+# heading shows "Valhalla" rather than the full dotted path
+show_root_full_path = false
+# fold __init__'s params/docs into the class entry instead of a nested section
+merge_init_into_class = true
+# render the signature on its own line below the symbol name
+separate_signature = true
+# include type hints in the rendered signature
+show_signature_annotations = true
+# surface members inherited from base classes
+inherited_members = true
+# don't render a [source] link/snippet per symbol
+show_source = false
+# hide underscore-prefixed members from the rendered output
+filters = ["!^_"]
+
+# ----------------------------------------------------------------------------
+# Markdown extensions — mirrors valhalla/docs/mkdocs.yml
+# ----------------------------------------------------------------------------
+[project.markdown_extensions.toc]
+permalink = true
+[project.markdown_extensions.attr_list]
+[project.markdown_extensions.admonition]
+[project.markdown_extensions.pymdownx.arithmatex]
+generic = true
+[project.markdown_extensions.pymdownx.betterem]
+smart_enable = "all"
+[project.markdown_extensions.pymdownx.caret]
+[project.markdown_extensions.pymdownx.details]
+[project.markdown_extensions.pymdownx.emoji]
+emoji_generator = "zensical.extensions.emoji.to_svg"
+emoji_index = "zensical.extensions.emoji.twemoji"
+[project.markdown_extensions.pymdownx.highlight]
+[project.markdown_extensions.pymdownx.keys]
+[project.markdown_extensions.pymdownx.mark]
+[project.markdown_extensions.pymdownx.smartsymbols]
+[project.markdown_extensions.pymdownx.superfences]
+[project.markdown_extensions.pymdownx.tabbed]
+alternate_style = true
+[project.markdown_extensions.pymdownx.tasklist]
+custom_checkbox = true
+[project.markdown_extensions.pymdownx.tilde]

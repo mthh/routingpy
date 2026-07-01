@@ -15,7 +15,7 @@
 # the License.
 #
 """
-:class:`Matrix` returns matrix results.
+`Matrix` returns matrix results.
 """
 from typing import List, Optional
 
