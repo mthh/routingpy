@@ -53,24 +53,24 @@ class Valhalla:
             server. Should not have a trailing slash.
 
         :param user_agent: User Agent to be used when requesting.
-            Default :attr:`routingpy.routers.options.default_user_agent`.
+            Default `default_user_agent`.
 
         :param timeout: Combined connect and read timeout for HTTP requests, in
-            seconds. Specify ``None`` for no timeout. Default :attr:`routingpy.routers.options.default_timeout`.
+            seconds. Specify ``None`` for no timeout. Default `default_timeout`.
 
         :param retry_timeout: Timeout across multiple retriable requests, in
-            seconds.  Default :attr:`routingpy.routers.options.default_retry_timeout`.
+            seconds.  Default `default_retry_timeout`.
 
         :param retry_over_query_limit: If True, client will not raise an exception
             on HTTP 429, but instead jitter a sleeping timer to pause between
             requests until HTTP 200 or retry_timeout is reached.
-            Default :attr:`routingpy.routers.options.default_retry_over_query_limit`.
+            Default `default_retry_over_query_limit`.
 
-        :param skip_api_error: Continue with batch processing if a :class:`routingpy.exceptions.RouterApiError` is
+        :param skip_api_error: Continue with batch processing if a `RouterApiError` is
             encountered (e.g. no route found). If False, processing will discontinue and raise an error.
-            Default :attr:`routingpy.routers.options.default_skip_api_error`.
+            Default `default_skip_api_error`.
 
-        :param client: A client class for request handling. Needs to be derived from :class:`routingpy.base.BaseClient`
+        :param client: A client class for request handling. Needs to be derived from `BaseClient`
         :type client: abc.ABCMeta
 
         :param client_kwargs: Additional arguments passed to the client, such as headers or proxies.
@@ -96,8 +96,10 @@ class Valhalla:
 
         Example:
 
+        ```pycon
         >>> waypoint = Valhalla.WayPoint(position=[8.15315, 52.53151], type='through', heading=120, heading_tolerance=10, minimum_reachability=10, radius=400)
         >>> route = Valhalla('http://localhost').directions(locations=[[[8.58232, 51.57234]], waypoint, [7.15315, 53.632415]])
+        ```
         """
 
         def __init__(self, position, **kwargs):
@@ -135,7 +137,7 @@ class Valhalla:
         Use ``kwargs`` for any missing ``directions`` request options.
 
         :param locations: The coordinates tuple the route should be calculated
-            from in order of visit. Can be a list/tuple of [lon, lat] or :class:`Valhalla.WayPoint` instance or
+            from in order of visit. Can be a list/tuple of [lon, lat] or `WayPoint` instance or
             a combination of both.
 
         :param profile: Specifies the mode of transport to use when calculating
@@ -186,7 +188,7 @@ class Valhalla:
         :param kwargs: any additional keyword arguments which will override parameters.
 
         :returns: A route from provided coordinates and restrictions.
-        :rtype: :class:`routingpy.direction.Direction`
+        :rtype: `Direction`
         """
 
         params = self.get_direction_params(
@@ -382,7 +384,7 @@ class Valhalla:
         :param dry_run: Print URL and parameters without sending the request.
 
         :returns: An isochrone with the specified range.
-        :rtype: :class:`routingpy.isochrone.Isochrones`
+        :rtype: `Isochrones`
         """
 
         params = self.get_isochrone_params(
@@ -628,7 +630,7 @@ class Valhalla:
         :param dry_run: Print URL and parameters without sending the request.
 
         :returns: A matrix from the specified sources and destinations.
-        :rtype: :class:`routingpy.matrix.Matrix`
+        :rtype: `Matrix`
         """
 
         params = self.get_matrix_params(
@@ -871,7 +873,7 @@ class Valhalla:
 
         For more information, visit https://valhalla.readthedocs.io/en/latest/api/map-matching/api-reference/.
 
-        :param locations: One pair of lng/lat values or :class:`Waypoint`. Takes the form [Longitude, Latitude].
+        :param locations: One pair of lng/lat values or `Waypoint`. Takes the form [Longitude, Latitude].
         :param profile: Specifies the mode of transport to use when calculating
             directions. One of ["auto", "bicycle", "multimodal", "pedestrian"].
         :param shape_match: It allows some control of the matching algorithm based on the type of input. One of
@@ -887,8 +889,8 @@ class Valhalla:
             https://valhalla.github.io/valhalla/api/turn-by-turn/api-reference/#costing-options
         :param dry_run: Print URL and parameters without sending the request.
 
-        :raises: ValueError if 'locations' and 'encoded_polyline' was specified
-        :returns: A :class:`MatchedResults` object with matched edges and points set.
+        :raises ValueError: if 'locations' and 'encoded_polyline' was specified
+        :returns: A `MatchedResults` object with matched edges and points set.
         """
         if locations and encoded_polyline:
             raise ValueError
@@ -972,7 +974,7 @@ class Valhalla:
 
         :param locations: The coordinates tuple the optimized route should be calculated
             from. The order might change, depending on the solution of the TSP.
-            Can be a list/tuple of [lon, lat] or :class:`Valhalla.WayPoint` instance or
+            Can be a list/tuple of [lon, lat] or `WayPoint` instance or
             a combination of both.
 
         :param profile: Specifies the mode of transport to use when calculating
@@ -1018,7 +1020,7 @@ class Valhalla:
         :param kwargs: any additional keyword arguments which will override parameters.
 
         :returns: A route optimized by TSP from provided coordinates and restrictions.
-        :rtype: :class:`routingpy.optimized.OptimizedDirection`
+        :rtype: `OptimizedDirection`
         """
 
         params = self.get_direction_params(

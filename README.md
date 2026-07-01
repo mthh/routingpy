@@ -1,0 +1,239 @@
+# routingpy
+
+[![Test Status](https://github.com/mthh/routingpy/workflows/tests/badge.svg)](https://github.com/mthh/routingpy/actions/workflows/ci-tests.yml)
+[![Documentation](https://github.com/mthh/routingpy/actions/workflows/docs.yml/badge.svg)](https://mthh.github.io/routingpy/)
+[![Coverage Status](https://coveralls.io/repos/github/mthh/routingpy/badge.svg?branch=master)](https://coveralls.io/github/mthh/routingpy)
+[![Monthly Downloads](https://img.shields.io/pypi/dm/routingpy.svg)](https://pypi.org/project/routingpy/)
+[![MyBinder.org](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/mthh/routingpy/master?filepath=examples)
+
+> **Project Update (June 2025):** *A new maintainer has taken over the project as of June 16, 2025.
+> Over the coming weeks, I'll be reviewing the codebase, triaging issues and pull requests,
+> and identifying areas that may need updating.
+> A new release is targeted for November 2025. Stay tuned for updates!*
+
+*One lib to route them all* - **routingpy** is a Python 3 client for several
+popular routing webservices.
+
+Inspired by [geopy](https://github.com/geopy/geopy) and its great community of contributors, **routingpy** enables
+easy and consistent access to third-party spatial webservices to request **route directions**, **isochrones**
+or **time-distance matrices**.
+
+**routingpy** currently includes support for the following services:
+
+- [Mapbox, OSRM](https://docs.mapbox.com/api/navigation)
+- [Openrouteservice](https://openrouteservice.org/dev/#/api-docs)
+- [Google Maps](https://developers.google.com/maps/documentation)
+- [Graphhopper](https://graphhopper.com/api/1/docs)
+- [OpenTripPlannerV2](https://docs.opentripplanner.org/en/latest/)
+- [Local Valhalla](https://valhalla.github.io/valhalla/)
+- [Local OSRM](https://github.com/Project-OSRM/osrm-backend/wiki)
+- [IGN](https://geoservices.ign.fr/documentation/services/services-geoplateforme/itineraire)
+
+This list is hopefully growing with time and contributions by other developers. An up-to-date list is always available
+in our [documentation](https://mthh.github.io/routingpy/).
+
+**routingpy** is tested against:
+
+- CPython versions 3.9, 3.10, 3.11, 3.12, 3.13 and 3.14,
+- PyPy3 versions 3.9 and 3.10.
+
+© routingpy contributors 2022 under the [Apache 2.0 License](https://github.com/mthh/routingpy/blob/master/LICENSE).
+
+![routing-py-image](https://user-images.githubusercontent.com/10322094/57357720-e180c080-7173-11e9-97a4-cecb4670065d.jpg)
+
+## Why routingpy?
+
+You want to
+
+- get from A to B by transit, foot, bike, car or hgv
+- compute a region of reachability
+- calculate a time distance matrix for a N x M table
+
+and don't know which provider to use? Great. Then **routingpy** is exactly what you're looking for.
+
+For the better or worse, every provider works on different spatial global datasets and uses a plethora of algorithms on top.
+While Google or HERE build on top of proprietary datasets, providers such as Mapbox or Graphhopper consume OpenStreetMap data
+for their base network. Also, all providers offer a different amount of options one can use to restrict the wayfinding.
+Ultimately this means that **results may differ** - and our experience tells us: they do, and not
+too little. This calls for a careful evaluation which service provider to use for which specific use case.
+
+With **routingpy** we have made an attempt to simplify this process for you.
+
+## Installation
+
+[![PyPI version](https://badge.fury.io/py/routingpy.svg)](https://badge.fury.io/py/routingpy)
+
+**Recommended**: Install via [uv](https://github.com/astral-sh/uv):
+
+```bash
+uv add routingpy
+```
+
+Install using `pip` with
+
+```bash
+pip install routingpy
+```
+
+Or the latest from source
+
+```bash
+pip install git+https://github.com/mthh/routingpy.git
+```
+
+## API
+
+Every provider has its own specifications and features. However the basic blueprints are the same across all. We tried hard
+to make the transition from one provider to the other as seamless as possible. We follow two dogmas for all implementations:
+
+- All basic parameters have to be the same for all routers for each endpoint
+
+- All routers still retain their special parameters for their endpoints, which make them unique in the end
+
+This naturally means that usually those **basic parameters are not named the same way** as the endpoints they query. However,
+all **provider specific parameters are named the exact same** as their remote counterparts.
+
+The following table gives you an overview which basic arguments are abstracted:
+
+| Endpoint | Argument | Function |
+|---|---|---|
+| `directions` | locations | Specify the locations to be visited in order. Usually this is done with `[Lon, Lat]` tuples, but some routers offer additional options to create a location element. |
+| | profile | The mode of transport, i.e. car, bicycle, pedestrian. Each router specifies their own profiles. |
+| `isochrones` | locations | Specify the locations to calculate isochrones for. Usually this is done with `[Lon, Lat]` tuples, but some routers offer additional options to create a location element. |
+| | profile | The mode of transport, i.e. car, bicycle, pedestrian. Each router specifies their own profiles. |
+| | intervals | The ranges to calculate isochrones for. Either in seconds or in meters, depending on `interval_type`. |
+| | interval_type | The dimension of `intervals`, which takes router dependent values, but generally describes time or distance. |
+| `matrix` | locations | Specify all locations you want to calculate a matrix for. If `sources` or `destinations` is not set, this will return a symmetrical matrix. Usually this is done with `[Lon, Lat]` tuples, but some routers offer additional options to create a location element. |
+| | profile | The mode of transport, i.e. car, bicycle, pedestrian. Each router specifies their own profiles. |
+| | sources | The indices of the `locations` parameter iterable to take as sources for the matrix calculation. If not specified all `locations` are considered to be sources. |
+| | destinations | The indices of the `locations` parameter iterable to take as destinations for the matrix calculation. If not specified all `locations` are considered to be destinations. |
+
+## Contributing
+
+We ❤️ contributions and realistically think that's the only way to support and maintain most
+routing engines in the long run. To get you started, we created a [Contribution guideline](https://github.com/mthh/routingpy/blob/master/CONTRIBUTING.md).
+
+## Examples
+
+Follow our examples to understand how simple **routingpy** is to use.
+
+On top of the examples listed below, find interactive notebook(s) on [mybinder.org](https://mybinder.org/v2/gh/mthh/routingpy/master?filepath=examples).
+
+### Basic Usage
+
+#### Get all attributes
+
+**routingpy** is designed to take the burden off your shoulder to parse the JSON response of each provider, exposing
+the most important information of the response as attributes of the response object. The actual JSON is always accessible via
+the `raw` attribute:
+
+```python
+from routingpy import Valhalla
+from pprint import pprint
+
+# Some locations in Berlin
+coords = [[13.413706, 52.490202], [13.421838, 52.514105],
+          [13.453649, 52.507987], [13.401947, 52.543373]]
+client = Valhalla()
+
+route = client.directions(locations=coords, profile='pedestrian')
+isochrones = client.isochrones(locations=coords[0], profile='pedestrian', intervals=[600, 1200])
+matrix = client.matrix(locations=coords, profile='pedestrian')
+
+pprint((route.geometry, route.duration, route.distance, route.raw))
+pprint((isochrones.raw, isochrones[0].geometry, isochrones[0].center, isochrones[0].interval))
+pprint((matrix.durations, matrix.distances, matrix.raw))
+```
+
+#### Multi Provider
+
+Easily calculate routes, isochrones and matrices for multiple providers:
+
+```python
+from routingpy import Graphhopper, ORS, MapboxOSRM
+from shapely.geometry import Polygon
+
+# Define the clients and their profile parameter
+apis = (
+   (ORS(api_key='ors_key'), 'cycling-regular'),
+   (Graphhopper(api_key='gh_key'), 'bike'),
+   (MapboxOSRM(api_key='mapbox_key'), 'cycling')
+)
+# Some locations in Berlin
+coords = [[13.413706, 52.490202], [13.421838, 52.514105],
+          [13.453649, 52.507987], [13.401947, 52.543373]]
+
+for api in apis:
+    client, profile = api
+    route = client.directions(locations=coords, profile=profile)
+    print("Direction - {}:\n\tDuration: {}\n\tDistance: {}".format(client.__class__.__name__,
+                                                                   route.duration,
+                                                                   route.distance))
+    isochrones = client.isochrones(locations=coords[0], profile=profile, intervals=[600, 1200])
+    for iso in isochrones:
+        print("Isochrone {} secs - {}:\n\tArea: {} sqm".format(client.__class__.__name__,
+                                                               iso.interval,
+                                                               Polygon(iso.geometry).area))
+    matrix = client.matrix(locations=coords, profile=profile)
+    print("Matrix - {}:\n\tDurations: {}\n\tDistances: {}".format(client.__class__.__name__,
+                                                                  matrix.durations,
+                                                                  matrix.distances))
+```
+
+#### Dry run - Debug
+
+Often it is crucial to examine the request before it is sent. Mostly useful for debugging:
+
+```python
+from routingpy import ORS
+
+client = ORS(api_key='ors_key')
+route = client.directions(
+    locations = [[13.413706, 52.490202], [13.421838, 52.514105]],
+    profile='driving-hgv',
+    dry_run=True
+)
+```
+
+### Advanced Usage
+
+#### Local instance of FOSS router
+
+All FOSS routing engines can be run locally, such as openrouteservice, Valhalla, OSRM and GraphHopper. To be able
+to use **routingpy** with a local installation, just change the `base_url` of the client. This assumes that you did
+not change the URL(s) of the exposed endpoint(s):
+
+```python
+from routingpy import Valhalla
+
+# no trailing slash, api_key is not necessary
+client = Valhalla(base_url='http://localhost:8088/v1')
+```
+
+#### Proxies, Rate limiters and API errors
+
+Proxies are easily set up using following `requests` scheme for proxying. Also, when batch requesting, **routingpy**
+can be set up to resume its requests when the remote API rate limits (i.e. responds
+with HTTP 429). Also, it can be set up to ignore API errors and instead print them as warnings to `stdout`. Be careful,
+when ignoring `RouterApiErrors`, those often count towards your rate limit.
+
+All these parameters, and more, can optionally be **globally set** for all router modules or individually per instance:
+
+```python
+from routingpy import Graphhopper, ORS
+from routingpy.routers import options
+
+request_kwargs = dict(proxies=dict(https='129.125.12.0'))
+
+client = Graphhopper(
+    api_key='gh_key',
+    retry_over_query_limit=False,
+    skip_api_error=True,
+    requests_kwargs=request_kwargs
+)
+
+# Or alternatively, set these options globally:
+options.default_proxies = {'https': '129.125.12.0'}
+options.default_retry_over_query_limit = False
+options.default_skip_api_error = True
+```

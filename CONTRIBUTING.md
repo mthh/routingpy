@@ -88,19 +88,23 @@ uv run coverage run --source=routingpy --module pytest
 ### Documentation
 
 If you add or remove new functionality which is exposed to the user/developer, please make sure to document these in the
-docstrings. To build the documentation:
+docstrings. The API reference is generated from the docstrings by [mkdocstrings](https://mkdocstrings.github.io/), and the
+site is built with [zensical](https://zensical.org/). To preview the documentation locally with live reload:
 
 ```bash
 # From the root of your git project
-cd docs
-make html
+uv run zensical serve -f docs/zensical.toml
 ```
 
-The documentation will have been added to `routingpy/docs/build/html` and you can open `index.html` in your web browser to view
-the changes.
+To build the static site (output lands in `docs/site/`):
 
-We realize that _re-structured text_ is not the most user-friendly format, but it is the currently best available
-documentation format for Python projects. You'll find lots of copy/paste material in the existing implementations.
+```bash
+# From the root of your git project
+uv run zensical build -f docs/zensical.toml
+```
+
+Docstrings are written in Sphinx/reStructuredText style (`:param:`, `:type:`, `:returns:`, `:rtype:`, `:raises:`); Griffe
+parses them natively. You'll find lots of copy/paste material in the existing implementations.
 
 ## Adding router
 
@@ -123,5 +127,6 @@ It's really easy:
    To run the new tests and ensure consistency, refer to the [Tests](#tests) section above. **Don't store secrets** in the tests.
 
 4. **Document** Please use docstring documentation for all user-exposed functionality, similar to other router implementations.
-   Also, please register the new module in `docs/index.rst`'s `Routers` section. To build the docs, refer to the
-   [documentation section](#documentation) for details. Don't forget to add your name to the list of `AUTHORS.md`.
+   Also, please register the new module in `docs/content/api.md`'s `Routers` section (add a `::: routingpy.routers.<YourRouter>`
+   block). To build the docs, refer to the [documentation section](#documentation) for details. Don't forget to add your name
+   to the list of `AUTHORS.md`.

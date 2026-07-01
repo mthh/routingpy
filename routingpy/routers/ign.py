@@ -49,24 +49,24 @@ class IGN:
             instance for "car". Should not have a trailing slash.
 
         :param user_agent: User Agent to be used when requesting.
-            Default :attr:`routingpy.routers.options.default_user_agent`.
+            Default `default_user_agent`.
 
         :param timeout: Combined connect and read timeout for HTTP requests, in
-            seconds. Specify ``None`` for no timeout. Default :attr:`routingpy.routers.options.default_timeout`.
+            seconds. Specify ``None`` for no timeout. Default `default_timeout`.
 
         :param retry_timeout: Timeout across multiple retriable requests, in
-            seconds.  Default :attr:`routingpy.routers.options.default_retry_timeout`.
+            seconds.  Default `default_retry_timeout`.
 
         :param retry_over_query_limit: If True, client will not raise an exception
             on HTTP 429, but instead jitter a sleeping timer to pause between
             requests until HTTP 200 or retry_timeout is reached.
-            Default :attr:`routingpy.routers.options.default_retry_over_query_limit`.
+            Default `default_retry_over_query_limit`.
 
-        :param skip_api_error: Continue with batch processing if a :class:`routingpy.exceptions.RouterApiError` is
+        :param skip_api_error: Continue with batch processing if a `RouterApiError` is
             encountered (e.g. no route found). If False, processing will discontinue and raise an error.
-            Default :attr:`routingpy.routers.options.default_skip_api_error`.
+            Default `default_skip_api_error`.
 
-        :param client: A client class for request handling. Needs to be derived from :class:`routingpy.client_base.BaseClient`
+        :param client: A client class for request handling. Needs to be derived from `BaseClient`
 
         :param client_kwargs: Additional arguments passed to the client, such as headers or proxies.
         """
@@ -134,7 +134,7 @@ class IGN:
         :param direction_kwargs: any additional keyword arguments which will override parameters
 
         :returns: A route from provided coordinates and restrictions.
-        :rtype: :class:`routingpy.direction.Direction`
+        :rtype: `Direction`
         """
 
         params = self.get_direction_params(
@@ -320,7 +320,7 @@ class IGN:
         :param dry_run: bool
 
         :returns: An isochrone with the specified range.
-        :rtype: :class:`routingpy.isochrone.Isochrones`
+        :rtype: `Isochrones`
 
         :raises ValueError: If required parameters are missing or malformed (for example, if ``locations`` is not a
             valid coordinate pair or if ``intervals`` is empty).

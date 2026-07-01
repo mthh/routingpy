@@ -15,7 +15,7 @@
 # the License.
 #
 """
-:class:`Raster` returns rasters results.
+`Raster` returns rasters results.
 """
 from typing import Optional
 

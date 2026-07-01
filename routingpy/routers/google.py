@@ -88,29 +88,29 @@ class Google:
         :type api_key: str
 
         :param user_agent: User Agent to be used when requesting.
-            Default :attr:`routingpy.routers.options.default_user_agent`.
+            Default `default_user_agent`.
         :type user_agent: str
 
         :param timeout: Combined connect and read timeout for HTTP requests, in
-            seconds. Specify ``None`` for no timeout. Default :attr:`routingpy.routers.options.default_timeout`.
+            seconds. Specify ``None`` for no timeout. Default `default_timeout`.
         :type timeout: int or None
 
         :param retry_timeout: Timeout across multiple retriable requests, in
-            seconds.  Default :attr:`routingpy.routers.options.default_retry_timeout`.
+            seconds.  Default `default_retry_timeout`.
         :type retry_timeout: int
 
         :param retry_over_query_limit: If True, client will not raise an exception
             on HTTP 429, but instead jitter a sleeping timer to pause between
             requests until HTTP 200 or retry_timeout is reached.
-            Default :attr:`routingpy.routers.options.default_over_query_limit`.
+            Default `default_over_query_limit`.
         :type retry_over_query_limit: bool
 
-        :param skip_api_error: Continue with batch processing if a :class:`routingpy.exceptions.RouterApiError` is
+        :param skip_api_error: Continue with batch processing if a `RouterApiError` is
             encountered (e.g. no route found). If False, processing will discontinue and raise an error.
-            Default :attr:`routingpy.routers.options.default_skip_api_error`.
+            Default `default_skip_api_error`.
         :type skip_api_error: bool
 
-        :param client: A client class for request handling. Needs to be derived from :class:`routingpy.client_base.BaseClient`
+        :param client: A client class for request handling. Needs to be derived from `BaseClient`
         :type client: abc.ABCMeta
 
         :param client_kwargs: Additional arguments passed to the client, such as headers or proxies.
@@ -131,14 +131,16 @@ class Google:
 
     class WayPoint(object):
         """
-        TODO: make the WayPoint class and its parameters appear in Sphinx. True for Valhalla as well.
+        TODO: make the WayPoint class and its parameters appear in the API docs. True for Valhalla as well.
 
         Optionally construct a waypoint from this class with additional attributes.
 
         Example:
 
+        ```pycon
         >>> waypoint = Google.WayPoint(position=[8.15315, 52.53151], waypoint_type='coords', stopover=False)
         >>> route = Google(api_key).directions(locations=[[[8.58232, 51.57234]], waypoint, [7.15315, 53.632415]])
+        ```
         """
 
         def __init__(self, position, waypoint_type="coords", stopover=True):
@@ -199,9 +201,9 @@ class Google:
 
         :param locations: The coordinates tuple the route should be calculated
             from in order of visit. Can be a list/tuple of [lon, lat], a list/tuple of address strings, Google's
-            Place ID's, a :class:`Google.WayPoint` instance or a combination of these. Note, the first and last location have to be specified as [lon, lat].
+            Place ID's, a `WayPoint` instance or a combination of these. Note, the first and last location have to be specified as [lon, lat].
             Optionally, specify ``optimize=true`` for via waypoint optimization.
-        :type locations: list of list or list of :class:`Google.WayPoint`
+        :type locations: list of list or list of `WayPoint`
 
         :param profile: The vehicle for which the route should be calculated.
             Default "driving". One of ['driving', 'walking', 'bicycling', 'transit'].
@@ -254,7 +256,7 @@ class Google:
         :type dry_run: bool
 
         :returns: One or multiple route(s) from provided coordinates and restrictions.
-        :rtype: :class:`routingpy.direction.Direction` or :class:`routingpy.direction.Directions`
+        :rtype: `Direction` or `Directions`
         """
 
         params = {"mode": profile}
@@ -455,7 +457,7 @@ class Google:
         :param dry_run: bool
 
         :returns: A matrix from the specified sources and destinations.
-        :rtype: :class:`routingpy.matrix.Matrix`
+        :rtype: `Matrix`
         """
         params = {"mode": profile}
 

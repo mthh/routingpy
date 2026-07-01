@@ -15,7 +15,7 @@
 # the License.
 #
 """
-:class:`Expansion` returns expansion results.
+`Expansion` returns expansion results.
 """
 from typing import List, Optional, Tuple, Union
 
@@ -115,7 +115,7 @@ class Edge:
 
 class Expansions:
     """
-    Contains a list of :class:`Edge`, which can be iterated over or accessed by index. The property ¸`raw`` contains
+    Contains a list of `Edge`, which can be iterated over or accessed by index. The property ¸`raw`` contains
     the complete raw response of the expansion request.
     """
 

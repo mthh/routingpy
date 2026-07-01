@@ -155,7 +155,7 @@ class MatchedEdge:
     @property
     def traversability(self) -> Optional[Traversability]:
         """
-        The traversability of the edge, one of :class:`Traversability`.
+        The traversability of the edge, one of `Traversability`.
         """
         return self._traversability
 
@@ -169,7 +169,7 @@ class MatchedEdge:
     @property
     def use(self) -> Optional[Use]:
         """
-        The Use of this edge as :class:`Use`.
+        The Use of this edge as `Use`.
         """
         return self._use
 
@@ -190,7 +190,7 @@ class MatchedEdge:
     @property
     def driving_side(self) -> Optional[DrivingSide]:
         """
-        Returns the :class:`DrivingSide` of the road.
+        Returns the `DrivingSide` of the road.
         """
         return self._driving_side
 
@@ -211,7 +211,7 @@ class MatchedEdge:
     @property
     def surface(self) -> Optional[Surface]:
         """
-        Returns the :class:`Surface` value for this road.
+        Returns the `Surface` value for this road.
         """
         return self._surface
 
@@ -246,7 +246,7 @@ class MatchedEdge:
     @property
     def sidewalk(self) -> Optional[Sidewalk]:
         """
-        Returns the :class:`Sidewalk` value for this road.
+        Returns the `Sidewalk` value for this road.
         """
         return self._sidewalk
 
@@ -277,7 +277,7 @@ class MatchedEdge:
     @property
     def road_class(self) -> Optional[RoadClass]:
         """
-        Returns the :class:`RoadClass` of this edge.
+        Returns the `RoadClass` of this edge.
         """
         return self._road_class
 
@@ -355,14 +355,14 @@ class MatchedPoint:
     @property
     def discontinuity(self) -> Optional[MatchDiscontinuity]:
         """
-        Returns the :class:`MatchDiscontinuity` status.
+        Returns the `MatchDiscontinuity` status.
         """
         return self._discontinuity
 
 
 class MatchedResults:
     """
-    Contains a list of :class:`Expansion`, which can be iterated over or accessed by index. The property ¸`raw`` contains
+    Contains a list of `Expansion`, which can be iterated over or accessed by index. The property ¸`raw`` contains
     the complete raw response of the expansion request.
     """
 
@@ -399,12 +399,12 @@ class MatchedResults:
 
     @property
     def matched_edges(self) -> Optional[List[MatchedEdge]]:
-        """Returns the list of :class:`MatchedEdge`"""
+        """Returns the list of `MatchedEdge`"""
         return self._edges
 
     @property
     def matched_points(self) -> Optional[List[MatchedPoint]]:
-        """Returns the list of :class:`MatchedEdge`"""
+        """Returns the list of `MatchedEdge`"""
         return self._points
 
     def __repr__(self):  # pragma: no cover

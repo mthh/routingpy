@@ -13,7 +13,10 @@ test.py
 *.pyc
 *.idea/
 .DS_Store
-docs/_build/
+
+# zensical docs build output and cache
+docs/site/
+docs/.cache/
 
 # Visual Studio Code
 .vscode

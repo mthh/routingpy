@@ -2,7 +2,7 @@
 name = "routingpy"
 version = "1.3.0"
 description = "One lib to route them all."
-readme = "README.rst"
+readme = "README.md"
 license = { text = "Apache-2.0" }
 requires-python = ">=3.10"
 maintainers = [
@@ -59,18 +59,20 @@ notebooks = [
 [project.urls]
 homepage = "https://github.com/mthh/routingpy"
 repository = "https://github.com/mthh/routingpy"
-documentation = "https://routingpy.readthedocs.io/"
+documentation = "https://mthh.github.io/routingpy/"
 "Bug Tracker" = "https://github.com/mthh/routingpy/issues"
 
 [dependency-groups]
 dev = [
-    "sphinx>=5.0",
-    "sphinx-rtd-theme>=1.0.0,<2.0.0",
-    "sphinxnotes-strike>=1.2,<2.0",
     "responses>=0.10.0,<0.11.0",
     "coverage>=7.0.0,<8.0.0",
     "pre-commit>=2.7.1,<3.0.0",
     "pytest>=8.0.0,<9.0.0",
+]
+docs = [
+    "zensical>=0.0.46",
+    "mkdocstrings[python]>=1.0",
+    "pymdown-extensions>=11.0",
 ]
 
 [build-system]
@@ -85,7 +87,7 @@ include = [
     "routingpy",
     "AUTHORS.md",
     "LICENSE",
-    "README.rst",
+    "README.md",
     "CHANGELOG.md",
 ]
 exclude = [

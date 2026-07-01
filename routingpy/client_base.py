@@ -41,6 +41,7 @@ class options(object):
 
     Example for overriding default values for `user_agent` and proxies:
 
+    ```pycon
     >>> from routingpy.routers import options
     >>> from routingpy.routers import MapboxOSRM
     >>> options.default_user_agent = 'amazing_routing_app'
@@ -50,6 +51,7 @@ class options(object):
     {'User-Agent': 'amazing_routing_app', 'Content-Type': 'application/x-www-form-urlencoded'}
     >>> print(router.client.proxies)
     {'https': '129.125.12.0'}
+    ```
 
     Attributes:
         self.default_timeout:
@@ -66,7 +68,7 @@ class options(object):
             requests until HTTP 200 or retry_timeout is reached. Boolean.
 
         self.default_skip_api_error:
-            Continue with batch processing if a :class:`routingpy.exceptions.RouterApiError` is
+            Continue with batch processing if a `RouterApiError` is
             encountered (e.g. no route found). If False, processing will discontinue and raise an error. Boolean.
 
         self.default_user_agent:
@@ -123,7 +125,7 @@ class BaseClient(metaclass=ABCMeta):
             requests until HTTP 200 or retry_timeout is reached.
         :type retry_over_query_limit: bool
 
-        :param skip_api_error: Continue with batch processing if a :class:`routingpy.exceptions.RouterApiError` is
+        :param skip_api_error: Continue with batch processing if a `RouterApiError` is
             encountered (e.g. no route found). If False, processing will discontinue and raise an error. Default False.
         :type skip_api_error: bool
 
@@ -176,7 +178,7 @@ class BaseClient(metaclass=ABCMeta):
 
         :param first_request_time: The time of the first request (None if no
             retries have occurred).
-        :type first_request_time: :class:`datetime.datetime`
+        :type first_request_time: `datetime`
 
         :param retry_counter: The number of this retry, or zero for first attempt.
         :type retry_counter: int

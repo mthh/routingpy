@@ -15,14 +15,14 @@
 # the License.
 #
 """
-:class:`Isochrone` returns isochrones results.
+`Isochrone` returns isochrones results.
 """
 from typing import List, Optional, Tuple, Union
 
 
 class Isochrones(object):
     """
-    Contains a list of :class:`Isochrone`, which can be iterated over or accessed by index. The property ¸`raw`` contains
+    Contains a list of `Isochrone`, which can be iterated over or accessed by index. The property ¸`raw`` contains
     the complete raw response of the isochrones request.
     """
 
