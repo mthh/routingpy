@@ -79,7 +79,7 @@ class Google:
         retry_over_query_limit=True,
         skip_api_error: Optional[bool] = None,
         client=Client,
-        **client_kwargs
+        **client_kwargs,
     ):
         """
         Initializes a Google client.
@@ -126,7 +126,7 @@ class Google:
             retry_timeout,
             retry_over_query_limit,
             skip_api_error,
-            **client_kwargs
+            **client_kwargs,
         )
 
     class WayPoint(object):

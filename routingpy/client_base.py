@@ -99,7 +99,7 @@ class BaseClient(metaclass=ABCMeta):
         retry_timeout=None,
         retry_over_query_limit=None,
         skip_api_error=None,
-        **kwargs
+        **kwargs,
     ):
         """
         :param base_url: The base URL for the request. All routers must provide a default.

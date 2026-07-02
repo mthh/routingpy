@@ -40,7 +40,7 @@ class Graphhopper:
         retry_over_query_limit: Optional[bool] = False,
         skip_api_error: Optional[bool] = None,
         client=Client,
-        **client_kwargs
+        **client_kwargs,
     ):
         """
         Initializes an graphhopper client.
@@ -94,7 +94,7 @@ class Graphhopper:
             retry_timeout,
             retry_over_query_limit,
             skip_api_error,
-            **client_kwargs
+            **client_kwargs,
         )
 
     def directions(  # noqa: C901
@@ -125,7 +125,7 @@ class Graphhopper:
         dry_run: Optional[bool] = None,
         snap_preventions: Optional[List[str]] = None,
         curbsides: Optional[List[str]] = None,
-        **direction_kwargs
+        **direction_kwargs,
     ):
         """Get directions between an origin point and a destination point.
 
@@ -411,7 +411,7 @@ class Graphhopper:
         reverse_flow: Optional[bool] = None,
         debug: Optional[bool] = None,
         dry_run: Optional[bool] = None,
-        **isochrones_kwargs
+        **isochrones_kwargs,
     ):
         """Gets isochrones or equidistants for a range of time/distance values around a given set of coordinates.
 
@@ -525,7 +525,7 @@ class Graphhopper:
         out_array: Optional[List[str]] = ["times", "distances"],
         debug=None,
         dry_run: Optional[bool] = None,
-        **matrix_kwargs
+        **matrix_kwargs,
     ):
         """Gets travel distance and time for a matrix of origins and destinations.
 
