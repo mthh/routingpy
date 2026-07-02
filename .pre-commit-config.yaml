@@ -18,6 +18,6 @@ repos:
   hooks:
     - id: no-absolute-imports
       name: Disallow absolute self-imports
-      entry: python tests/scripts/check_imports.py routingpy routingpy
+      entry: uv run tests/scripts/check_imports.py routingpy routingpy
       language: system
       pass_filenames: false
