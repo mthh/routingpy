@@ -44,7 +44,7 @@ class Valhalla:
         retry_over_query_limit: Optional[bool] = False,
         skip_api_error: Optional[bool] = None,
         client=Client,
-        **client_kwargs: dict
+        **client_kwargs: dict,
     ):
         """
         Initializes a Valhalla client.
@@ -83,7 +83,7 @@ class Valhalla:
             retry_timeout,
             retry_over_query_limit,
             skip_api_error,
-            **client_kwargs
+            **client_kwargs,
         )
 
     class Waypoint(object):
@@ -126,7 +126,7 @@ class Valhalla:
         alternatives: Optional[int] = None,
         id: Optional[Union[str, int, float]] = None,
         dry_run: Optional[bool] = None,
-        **kwargs
+        **kwargs,
     ):
         """Get directions between an origin point and a destination point.
 
@@ -202,7 +202,7 @@ class Valhalla:
             date_time,
             alternatives,
             id,
-            **kwargs
+            **kwargs,
         )
 
         return self.parse_direction_json(
@@ -224,7 +224,7 @@ class Valhalla:
         date_time=None,
         alternatives=None,
         id=None,
-        **kwargs
+        **kwargs,
     ):
         """
         Builds and returns the router's route parameters. It's a separate function so that
@@ -320,7 +320,7 @@ class Valhalla:
         show_locations: Optional[List[List[float]]] = None,
         id: Optional[str] = None,
         dry_run: Optional[bool] = None,
-        **kwargs
+        **kwargs,
     ):
         """Gets isochrones or equidistants for a range of time values around a given set of coordinates.
 
@@ -401,7 +401,7 @@ class Valhalla:
             date_time,
             show_locations,
             id,
-            **kwargs
+            **kwargs,
         )
 
         return self.parse_isochrone_json(
@@ -428,7 +428,7 @@ class Valhalla:
         date_time=None,
         show_locations=None,
         id=None,
-        **kwargs
+        **kwargs,
     ):
         """
         Builds and returns the router's route parameters. It's a separate function so that
@@ -530,7 +530,7 @@ class Valhalla:
         show_locations: Optional[List[List[float]]] = None,
         id: Optional[str] = None,
         dry_run: Optional[bool] = None,
-        **kwargs
+        **kwargs,
     ):
         """
         For parameters see docs for isochrones.
@@ -553,7 +553,7 @@ class Valhalla:
             date_time,
             show_locations,
             id,
-            **kwargs
+            **kwargs,
         )
         params["format"] = "geotiff"
 
@@ -581,7 +581,7 @@ class Valhalla:
         date_time: Optional[dict] = None,
         id: Optional[str] = None,
         dry_run: Optional[bool] = None,
-        **kwargs
+        **kwargs,
     ):
         """
         Gets travel distance and time for a matrix of origins and destinations.
@@ -642,7 +642,7 @@ class Valhalla:
             avoid_polygons,
             date_time,
             id,
-            **kwargs
+            **kwargs,
         )
 
         return self.parse_matrix_json(
@@ -661,7 +661,7 @@ class Valhalla:
         avoid_polygons=None,
         date_time=None,
         id=None,
-        **kwargs
+        **kwargs,
     ):
         """
         Builds and returns the router's route parameters. It's a separate function so that
@@ -747,7 +747,7 @@ class Valhalla:
         date_time: Optional[dict] = None,
         id: Optional[str] = None,
         dry_run: Optional[bool] = None,
-        **kwargs
+        **kwargs,
     ) -> Expansions:
         """Gets the expansion tree for a range of time or distance values around a given coordinate.
 
@@ -795,7 +795,7 @@ class Valhalla:
             options,
             date_time,
             id,
-            **kwargs
+            **kwargs,
         )
         return self.parse_expansion_json(
             self.client._request("/expansion", post_params=params, dry_run=dry_run),
@@ -816,7 +816,7 @@ class Valhalla:
         options=None,
         date_time=None,
         id=None,
-        **kwargs
+        **kwargs,
     ):
         params = cls.get_isochrone_params(
             locations,
@@ -863,7 +863,7 @@ class Valhalla:
         filters_action: Optional[str] = None,
         options: Optional[dict] = None,
         dry_run: Optional[bool] = None,
-        **kwargs
+        **kwargs,
     ) -> MatchedResults:
         """
         Map-matches the input locations to form a route on the Valhalla base network and
@@ -911,7 +911,7 @@ class Valhalla:
         filters: Optional[List[str]] = None,
         filters_action: Optional[str] = None,
         options: Optional[dict] = None,
-        **kwargs
+        **kwargs,
     ):
         params = dict()
         if locations:
@@ -961,7 +961,7 @@ class Valhalla:
         date_time: Optional[dict] = None,
         id: Optional[Union[str, int, float]] = None,
         dry_run: Optional[bool] = None,
-        **kwargs
+        **kwargs,
     ):
         """Get directions for the optimized route, where the first and last location are not changed.
 
@@ -1034,7 +1034,7 @@ class Valhalla:
             date_time,
             False,  # alternatives
             id,
-            **kwargs
+            **kwargs,
         )
 
         return self.parse_optimized_json(

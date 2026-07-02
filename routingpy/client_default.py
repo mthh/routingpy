@@ -40,7 +40,7 @@ class Client(BaseClient):
         retry_timeout=None,
         retry_over_query_limit=None,
         skip_api_error=None,
-        **kwargs
+        **kwargs,
     ):
         """
         :param base_url: The base URL for the request. All routers must provide a default.
@@ -80,7 +80,7 @@ class Client(BaseClient):
             retry_timeout=retry_timeout,
             retry_over_query_limit=retry_over_query_limit,
             skip_api_error=skip_api_error,
-            **kwargs
+            **kwargs,
         )
 
         self.kwargs = kwargs or {}

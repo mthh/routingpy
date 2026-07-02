@@ -39,7 +39,7 @@ class ORS:
         retry_over_query_limit: Optional[bool] = False,
         skip_api_error: Optional[bool] = None,
         client=Client,
-        **client_kwargs
+        **client_kwargs,
     ):
         """
         Initializes an openrouteservice client.
@@ -96,7 +96,7 @@ class ORS:
             retry_timeout,
             retry_over_query_limit,
             skip_api_error,
-            **client_kwargs
+            **client_kwargs,
         )
 
     def directions(  # noqa: C901
