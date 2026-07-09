@@ -2,10 +2,10 @@ Welcome to routingpy's documentation!
 =====================================
 
 :Documentation: https://routingpy.readthedocs.io/
-:Source Code: https://github.com/mthh/routingpy
-:Issue Tracker: https://github.com/mthh/routingpy/issues
+:Source Code: https://github.com/routingpy/routingpy
+:Issue Tracker: https://github.com/routingpy/routingpy/issues
 :PyPI: https://pypi.org/project/routingpy
-:MyBinder Interactive Examples: https://mybinder.org/v2/gh/mthh/routingpy/master?filepath=examples
+:MyBinder Interactive Examples: https://mybinder.org/v2/gh/routingpy/routingpy/master?filepath=examples
 
 .. automodule:: routingpy
    :members: __doc__
@@ -172,7 +172,7 @@ Changelog
 
 See our `Changelog.md`_.
 
-.. _Changelog.md: https://github.com/mthh/routingpy/CHANGELOG.md
+.. _Changelog.md: https://github.com/routingpy/routingpy/CHANGELOG.md
 
 Indices and search
 ==================

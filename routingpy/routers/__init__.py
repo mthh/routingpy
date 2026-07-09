@@ -11,8 +11,8 @@ attempt to be consistent for the same method across different routers. Unlike ot
 we additionally chose to preserve each router's special arguments, only abstracting the most basic arguments, such as
 locations and profile (car, bike, pedestrian etc.), among others (full list here_).
 
-.. _`contribution guidelines`: https://github.com/mthh/routingpy/blob/master/CONTRIBUTING.md
-.. _here: https://github.com/mthh/routingpy#api
+.. _`contribution guidelines`: https://github.com/routingpy/routingpy/blob/master/CONTRIBUTING.md
+.. _here: https://github.com/routingpy/routingpy#api
 """
 from ..client_base import options  # noqa: F401
 from ..exceptions import RouterNotFound

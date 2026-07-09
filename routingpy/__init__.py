@@ -26,8 +26,8 @@ Take a look at our `Examples`_ to see how simple you can compare routes from dif
 **routingpy** is tested against CPython 3.9, 3.10, 3.11, 3.12, 3.13 and 3.14 as well as
 PyPy3 version 3.9 and 3.10.
 
-.. _`README`: https://github.com/mthh/routingpy#api
-.. _`Examples`: https://github.com/mthh/routingpy#examples
+.. _`README`: https://github.com/routingpy/routingpy#api
+.. _`Examples`: https://github.com/routingpy/routingpy#examples
 """
 
 try:

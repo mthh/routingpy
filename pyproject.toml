@@ -57,10 +57,10 @@ notebooks = [
 ]
 
 [project.urls]
-homepage = "https://github.com/mthh/routingpy"
-repository = "https://github.com/mthh/routingpy"
+homepage = "https://github.com/routingpy/routingpy"
+repository = "https://github.com/routingpy/routingpy"
 documentation = "https://routingpy.readthedocs.io/"
-"Bug Tracker" = "https://github.com/mthh/routingpy/issues"
+"Bug Tracker" = "https://github.com/routingpy/routingpy/issues"
 
 [dependency-groups]
 dev = [

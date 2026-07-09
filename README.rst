@@ -1,16 +1,16 @@
 routingpy
 ==========
 
-.. image:: https://github.com/mthh/routingpy/workflows/tests/badge.svg
-    :target: https://github.com/mthh/routingpy/actions/workflows/ci-tests.yml
+.. image:: https://github.com/routingpy/routingpy/workflows/tests/badge.svg
+    :target: https://github.com/routingpy/routingpy/actions/workflows/ci-tests.yml
     :alt: Test Status
 
 .. image:: https://readthedocs.org/projects/routingpy/badge/?version=latest
     :target: https://routingpy.readthedocs.io/en/latest/?badge=latest
     :alt: Documentation Status
 
-.. image:: https://coveralls.io/repos/github/mthh/routingpy/badge.svg?branch=master
-    :target: https://coveralls.io/github/mthh/routingpy
+.. image:: https://coveralls.io/repos/github/routingpy/routingpy/badge.svg?branch=master
+    :target: https://coveralls.io/github/routingpy/routingpy
     :alt: Coverage Status
 
 .. image:: https://img.shields.io/pypi/dm/routingpy.svg
@@ -18,7 +18,7 @@ routingpy
     :alt: Monthly Downloads
 
 .. image:: https://mybinder.org/badge_logo.svg
-    :target: https://mybinder.org/v2/gh/mthh/routingpy/master?filepath=examples
+    :target: https://mybinder.org/v2/gh/routingpy/routingpy/master?filepath=examples
     :alt: MyBinder.org
 
 > **Project Update (June 2025):** *A new maintainer has taken over the project as of June 16, 2025.*
@@ -100,7 +100,7 @@ Or the lastest from source
 
 .. code:: bash
 
-   pip install git+https://github.com/mthh/routingpy.git
+   pip install git+https://github.com/routingpy/routingpy.git
 
 
 API
@@ -313,6 +313,6 @@ All these parameters, and more, can optionally be **globally set** for all route
 .. _IGN: https://geoservices.ign.fr/documentation/services/services-geoplateforme/itineraire
 .. _documentation: https://routingpy.readthedocs.io/en/latest
 .. _routing-py.routers: https://routingpy.readthedocs.io/en/latest/#module-routingpy.routers
-.. _Apache 2.0 License: https://github.com/mthh/routingpy/blob/master/LICENSE
-.. _mybinder.org: https://mybinder.org/v2/gh/mthh/routingpy/master?filepath=examples
+.. _Apache 2.0 License: https://github.com/routingpy/routingpy/blob/master/LICENSE
+.. _mybinder.org: https://mybinder.org/v2/gh/routingpy/routingpy/master?filepath=examples
 .. _uv: https://github.com/astral-sh/uv
