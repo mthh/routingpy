@@ -21,11 +21,6 @@ routingpy
     :target: https://mybinder.org/v2/gh/routingpy/routingpy/master?filepath=examples
     :alt: MyBinder.org
 
-> **Project Update (June 2025):** *A new maintainer has taken over the project as of June 16, 2025.*
-*Over the coming weeks, I'll be reviewing the codebase, triaging issues and pull requests,*
-*and identifying areas that may need updating.*
-*A new release is targeted for November 2025. Stay tuned for updates!*
-
 *One lib to route them all* - **routingpy** is a Python 3 client for several
 popular routing webservices.
 
